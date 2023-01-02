@@ -8,12 +8,17 @@ function SidebarCom() {
         class="layout-menu menu-vertical menu bg-menu-theme"
       >
         <div class="app-brand demo">
-          <a href="index.html" class="app-brand-link">
-            <span class="app-brand-logo demo"></span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">
-              Sneat
-            </span>
-          </a>
+          <div className="w-100 d-flex justify-content-center">
+            <a href="index.html" class="app-brand-link">
+              <span class="app-brand-logo demo"></span>
+              <span class="app-brand-text demo menu-text fw-bolder">
+                <strong className="text-uppercase">
+                  AR
+                  <span className="text-danger">M</span>
+                </strong>
+              </span>
+            </a>
+          </div>
 
           <a
             href="javascript:void(0);"

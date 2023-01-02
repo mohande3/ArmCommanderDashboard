@@ -1,0 +1,29 @@
+.layout-wrapper:not(.layout-horizontal)
+  .bg-menu-theme
+  .menu-inner
+  > .menu-item.active:before {
+  left: 0 !important;
+  right: unset;
+}
+.menu-icon {
+  margin-left: 0.5rem;
+  margin-right: unset !important;
+}
+.menu-toggle::after {
+  transform: translateY(-50%) rotate(225deg);
+}
+.menu-vertical .menu-item .menu-toggle::after {
+  left: 1rem;
+  right: unset !important;
+}
+.bg-menu-theme .menu-sub > .menu-item > .menu-link:before {
+  left: unset !important;
+  right: 1.4375rem;
+}
+.menu-vertical .menu-sub .menu-link {
+  padding-right: 3rem !important;
+  padding-left: unset !important;
+}
+.menu-vertical .menu-item .menu-toggle {
+  padding-left: unset !important;
+}
