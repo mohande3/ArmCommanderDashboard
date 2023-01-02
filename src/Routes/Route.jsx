@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "../Pages/Dashboard";
 import BaseLayout from "../Pages/Layout/BaseLayout";
+import TimeLogTable from "../Pages/timelog/TimeLogTable";
 
 function FullRoute() {
   return (
@@ -9,6 +10,7 @@ function FullRoute() {
       <Routes>
         <Route path="/" element={<BaseLayout />}>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/timelogs" element={<TimeLogTable />} />
         </Route>
       </Routes>
     </>

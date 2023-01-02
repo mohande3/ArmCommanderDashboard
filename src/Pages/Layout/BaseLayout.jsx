@@ -2,6 +2,7 @@ import React from "react";
 import SidebarCom from "../../Components/Project/sidebar/SidebarCom";
 import NavbarCom from "../../Components/Project/navbar/NavbarCom";
 import { Outlet } from "react-router-dom";
+import { Container } from "../../Components/Basic/containers/Containers";
 
 function BaseLayout() {
   return (
@@ -10,7 +11,9 @@ function BaseLayout() {
         <SidebarCom />
         <div class="layout-page">
           <NavbarCom />
-          <Outlet />
+          <Container className="mt-4">
+            <Outlet />
+          </Container>
         </div>
       </div>
 
