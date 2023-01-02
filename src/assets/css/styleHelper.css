@@ -27,3 +27,8 @@
 .menu-vertical .menu-item .menu-toggle {
   padding-left: unset !important;
 }
+
+.bg-menu-theme .menu-header:before {
+  right: 0 !important;
+  left: unset !important;
+}
