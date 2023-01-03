@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 import FullRoute from "./Routes/Route";
 
 const App = () => {
@@ -14,7 +15,12 @@ const App = () => {
     CreateScript("/assets/js/main.js");
   }, []);
 
-  return <FullRoute />;
+  return (
+    <>
+      <Toaster />
+      <FullRoute />
+    </>
+  );
 };
 
 export default App;

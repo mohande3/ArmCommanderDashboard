@@ -1,7 +1,8 @@
 import React from "react";
+import TimeLogTableCom from "../../Components/Project/timelog/TimeLogTableCom";
 
 function TimeLogTable() {
-  return <h1>TimeLogTable</h1>;
+  return <TimeLogTableCom />;
 }
 
 export default TimeLogTable;

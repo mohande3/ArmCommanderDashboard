@@ -1,16 +1,16 @@
 import React from "react";
 
-function Card({ className = "", id = "", title = "", titleElement,children }) {
+function Card({ className = "", id = "", title = "", titleElement, children }) {
   return (
     <>
       <div id={id} class={"card h-100 " + className}>
-        <div class="card-body">
+        <div className="card-body">
           {titleElement === undefined ? (
-            <h5 class="card-title">{title}</h5>
+            <h5 className="card-title">{title}</h5>
           ) : (
             <>{titleElement}</>
           )}
-          { children}
+          {children}
         </div>
       </div>
     </>
