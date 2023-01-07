@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "../Pages/Dashboard";
+import DeviceTable from "../Pages/device/DeviceTable";
 import BaseLayout from "../Pages/Layout/BaseLayout";
 import PersonnelAddOrEdit from "../Pages/personnel/PersonnelAddOrEdit";
 import PersonnelTable from "../Pages/personnel/PersonnelTable";
