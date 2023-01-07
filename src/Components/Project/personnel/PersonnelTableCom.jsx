@@ -1,32 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "../../Basic/card/Card";
 import Table from "../../Basic/table/Table";
+import PersonnelApiService from "../../../services/apis/PersonnelApiService";
+import { toast } from "react-hot-toast";
 function PersonnelTableCom() {
+  const [personnels, setPersonnels] = useState(null);
   const columns = [
     {
-      title: "col1",
-      property: "",
+      title: "id",
+      property: "id",
     },
     {
-      title: "col1",
-      property: "",
+      title: "personnelNumber",
+      property: "personnelNumber",
     },
     {
-      title: "col1",
-      property: "",
+      title: "fullName",
+      property: "fullName",
     },
     {
-      title: "col1",
-      property: "",
+      title: "dateTimeOfStartWork",
+      property: "dateTimeOfStartWork",
     },
     {
-      title: "col1",
-      property: "",
+      title: "dateTimeOfEndWork",
+      property: "dateTimeOfEndWork",
     },
   ];
+  const LoadData = async () => {
+    let dataFromServer = await PersonnelApiService.GetTableAsync();
+    if (dataFromServer.isSuccess) {
+      setPersonnels(dataFromServer.result.results);
+    } else {
+      toast.error(dataFromServer.messages[0]);
+    }
+  };
+  useEffect(() => {
+    LoadData();
+  }, []);
   return (
     <Card title="مدیریت کاربران">
-      <Table columns={columns} />
+      <Table columns={columns} rows={personnels} />
     </Card>
   );
 }
