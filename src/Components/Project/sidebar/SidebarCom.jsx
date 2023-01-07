@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function SidebarCom() {
   return (
@@ -46,14 +47,14 @@ function SidebarCom() {
 
             <ul class="menu-sub">
               <li class="menu-item">
-                <a href="layouts-without-menu.html" class="menu-link">
+                <Link to="/timelogs" className="menu-link">
                   <div data-i18n="Without menu">تردد لحظه ای</div>
-                </a>
+                </Link>
               </li>
               <li class="menu-item">
-                <a href="layouts-without-navbar.html" class="menu-link">
-                  <div data-i18n="Without navbar">مدیریت پرسنل</div>
-                </a>
+                <Link to="/personnel" className="menu-link">
+                  <div data-i18n="Without menu">مدیریت پرسنل</div>
+                </Link>
               </li>
             </ul>
           </li>

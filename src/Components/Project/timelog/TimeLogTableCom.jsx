@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import TimeLogApiService from "../../../services/apis/TimeLogApiService";
-import Card from "../../Basic/card/Card";
+import { Card } from "../../Basic/card/Card";
 import Table from "../../Basic/table/Table";
 
 function TimeLogTableCom() {
