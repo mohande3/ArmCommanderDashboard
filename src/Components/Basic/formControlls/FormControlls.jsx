@@ -12,14 +12,31 @@ const Label = ({className='',id='',text='',htmlFor=''}) => {
 }
 
 // ================= TEXT =====================
-const Input = ({className='',placeHolder='',type='',id=''}) => {
-    return <input className={'form-control ' + className}
+const Input = ({ className = '', placeHolder = '', type = '', id = '',
+    value='',
+    onHandleChangeValue }) => {
+    
+    const HandleChangeValue = (e) => {
+        if (onHandleChangeValue === null || 
+            onHandleChangeValue === undefined) {
+            console.warn(`Not exist onHandleChangeValue for ${id} controll`);
+            return;
+        }
+        onHandleChangeValue(e.target.value)
+    }
+    return <input
+        className={'form-control ' + className}
         id={id}
+        value={value}
+        onChange={HandleChangeValue}
         placeholder={placeHolder} type={type} />
 }
-const InputText = ({ className = '', placeHolder = '',id=''}) => {
+const InputText = ({ className = '', placeHolder = '', id = '',
+    value='',
+    onHandleChangeValue }) => {
+    console.log('CONTROLLER',value)
     return <Input className={className} placeHolder={placeHolder}
-        type='text' id={id} />
+        type='text' id={id} value={value} onHandleChangeValue={onHandleChangeValue} />
 }
 const InputDatePicker = ({className=''}) => {
     return <div className={'datePicker '+className}>

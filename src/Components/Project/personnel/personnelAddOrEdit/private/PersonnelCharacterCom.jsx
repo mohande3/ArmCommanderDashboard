@@ -4,6 +4,35 @@ import { LoaderSpinnerMedium, LoaderSpinnerSmall } from '../../../../Basic/loade
 
 function PersonnelCharacterCom() {
   const [locationServices, setLocationServices] = useState(null)
+      const [personnel, setPersonnel] = useState({
+    personnelNumber: '',
+    name: '',
+    family: '',
+    dateTimeOfStartWork: '',
+    dateTimeOfEndWork: '',
+    serviceLocationPhone: '',
+    NameFather: '',
+    NationalId: '',
+    Sex: '',
+    IsActive: '',
+    IsSpecial: '',
+    DateTimeOfBirthDay: '',
+    LocationOfBirth: '',
+    Education: '',
+    ServiceLocation: '',
+    SelfPhone: '',
+    IsChangeAssignToDevices: false,
+    PersonnelDevices: [],
+    CarStationId: 0,
+    CarPathCode: '',
+    PersonnelImage: '',
+    PersonnelImageBase64:''
+      })
+    const HandleSetValue=(property, value) => {
+    let data = personnel;
+    data[property] = value;
+    setPersonnel(data);
+  }
   return (
     <>
           <div class="d-flex align-items-start align-items-sm-center gap-4">
@@ -43,9 +72,15 @@ function PersonnelCharacterCom() {
       <hr class="my-0 my-3" />
  <form id="formAccountSettings" method="POST" onsubmit="return false">
           <div class="row">
-            <div class="mb-3 col-md-6">
-              <Label text='نام : ' htmlFor='firstName' />
-              <InputText id='firstName' placeHolder='نام' />
+          <div class="mb-3 col-md-6">
+            <Label text='نام : ' htmlFor='name' />
+            <InputText id='name' placeHolder='نام'
+              value={personnel.name}
+              onHandleChangeValue={(val) => { 
+                console.log('AFTER : ',val);
+                HandleSetValue('name',val)
+              }
+              } />
             </div>
             <div class="mb-3 col-md-6">
               <Label text='نام خانوادگی : ' htmlFor='lastName' />
