@@ -1,6 +1,9 @@
 import React from 'react'
+import { LoaderSpinnerSmall } from "../../loader/LoaderSpinner";
 
-function InputSelectePrivate({className='',id='',options=[]}) {
+function InputSelectePrivate({ className = '', id = '', options = [] }) {
+    if (options == null)
+        <LoaderSpinnerSmall />
   return (
       <select id={id} className={'select2 form-select ' + className}>
           {options == null ?
