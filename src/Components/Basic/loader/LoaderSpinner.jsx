@@ -1,26 +1,26 @@
 import React from "react";
 
-function LoaderSpinner({ size = "" }) {
+function LoaderSpinner({ size = "",className='' }) {
   return (
-    <div class={`spinner-border ${size} text-secondary`} role="status">
+    <div class={`spinner-border ${size} text-secondary `+className} role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   );
 }
 
-const LoaderSpinnerSmall = () => {
-  return <LoaderSpinner size="spinner-border-sm" />;
+const LoaderSpinnerSmall = ({className=''}) => {
+  return <LoaderSpinner size="spinner-border-sm" className={className} />;
 };
 
-const LoaderSpinnerMedium = () => {
-  return <LoaderSpinner />;
+const LoaderSpinnerMedium = ({className=''}) => {
+  return <LoaderSpinner className={className} />;
 };
 
-const LoaderSpinnerLarge = () => {
-  return <LoaderSpinner size="spinner-border-lg" />;
+const LoaderSpinnerLarge = ({className=''}) => {
+  return <LoaderSpinner className={className} size="spinner-border-lg" />;
 };
 
-export default {
+export {
   LoaderSpinner,
   LoaderSpinnerSmall,
   LoaderSpinnerMedium,
