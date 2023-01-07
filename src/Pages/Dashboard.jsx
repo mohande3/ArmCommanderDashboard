@@ -1,9 +1,19 @@
 import React from "react";
+import Modal from "../Components/Basic/modal/Modal";
 import BaseLayout from "./Layout/BaseLayout";
 
 function Dashboard() {
   return (
     <>
+      <Modal />
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#basicModal"
+      >
+        Launch modal
+      </button>
       <div class="content-wrapper">
         <div class="container-xxl flex-grow-1 container-p-y">
           <div class="row">

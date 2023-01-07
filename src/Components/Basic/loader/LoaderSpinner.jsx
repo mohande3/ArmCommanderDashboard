@@ -2,8 +2,8 @@ import React from "react";
 
 function LoaderSpinner({ size = "",className='' }) {
   return (
-    <div class={`spinner-border ${size} text-secondary `+className} role="status">
-      <span class="visually-hidden">Loading...</span>
+    <div className={`spinner-border ${size} text-secondary `+className} role="status">
+      <span className="visually-hidden">Loading...</span>
     </div>
   );
 }

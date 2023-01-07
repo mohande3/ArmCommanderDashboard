@@ -6,10 +6,10 @@ import { Container } from "../../Components/Basic/containers/Containers";
 
 function BaseLayout() {
   return (
-    <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
+    <div className="layout-wrapper layout-content-navbar">
+      <div className="layout-container">
         <SidebarCom />
-        <div class="layout-page">
+        <div className="layout-page">
           <NavbarCom />
           <Container className="mt-4">
             <Outlet />
@@ -17,7 +17,7 @@ function BaseLayout() {
         </div>
       </div>
 
-      <div class="layout-overlay layout-menu-toggle"></div>
+      <div className="layout-overlay layout-menu-toggle"></div>
     </div>
   );
 }

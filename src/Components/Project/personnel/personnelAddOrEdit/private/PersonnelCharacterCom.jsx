@@ -1,131 +1,176 @@
-import React,{useState} from 'react'
-import { Input, InputDatePicker, InputSelecte, InputText, Label } from '../../../../Basic/formControlls/FormControlls'
-import { LoaderSpinnerMedium, LoaderSpinnerSmall } from '../../../../Basic/loader/LoaderSpinner'
+import React, { useState } from "react";
+import {
+  Input,
+  InputDatePicker,
+  InputSelecte,
+  InputSwitch,
+  InputText,
+  Label,
+} from "../../../../Basic/formControlls/FormControlls";
+import {
+  LoaderSpinnerMedium,
+  LoaderSpinnerSmall,
+} from "../../../../Basic/loader/LoaderSpinner";
 
-function PersonnelCharacterCom() {
-  const [locationServices, setLocationServices] = useState(null)
-      const [personnel, setPersonnel] = useState({
-    personnelNumber: '',
-    name: '',
-    family: '',
-    dateTimeOfStartWork: '',
-    dateTimeOfEndWork: '',
-    serviceLocationPhone: '',
-    NameFather: '',
-    NationalId: '',
-    Sex: '',
-    IsActive: '',
-    IsSpecial: '',
-    DateTimeOfBirthDay: '',
-    LocationOfBirth: '',
-    Education: '',
-    ServiceLocation: '',
-    SelfPhone: '',
-    IsChangeAssignToDevices: false,
-    PersonnelDevices: [],
-    CarStationId: 0,
-    CarPathCode: '',
-    PersonnelImage: '',
-    PersonnelImageBase64:''
-      })
-    const HandleSetValue=(property, value) => {
-    let data = personnel;
-    data[property] = value;
-    setPersonnel(data);
-  }
+function PersonnelCharacterCom({ personnel, onHandleSetValue }) {
+  const [locationServices, setLocationServices] = useState(null);
   return (
     <>
-          <div class="d-flex align-items-start align-items-sm-center gap-4">
-          <img
-            src="../assets/img/avatars/1.png"
-            alt="user-avatar"
-            class="d-block rounded"
-            height="100"
-            width="100"
-            id="uploadedAvatar"
-          />
-          <div class="button-wrapper">
-            <label for="upload" class="btn btn-primary mx-2 mb-4" tabindex="0">
-              <span class="d-none d-sm-block">انتخاب تصویر</span>
-              <i class="bx bx-upload d-block d-sm-none"></i>
-              <input
-                type="file"
-                id="upload"
-                class="account-file-input hidden"
-                hidden=""
-                accept="image/png, image/jpeg"
-              />
-            </label>
-            <button
-              type="button"
-              class="btn btn-outline-secondary account-image-reset mb-4"
-            >
-              <i class="bx bx-reset d-block d-sm-none"></i>
-              <span class="d-none d-sm-block">ریست</span>
-            </button>
+      <div className="d-flex align-items-start align-items-sm-center gap-4">
+        <img
+          src="../assets/img/avatars/1.png"
+          alt="user-avatar"
+          className="d-block rounded"
+          height="100"
+          width="100"
+          id="uploadedAvatar"
+        />
+        <div className="button-wrapper">
+          <label
+            htmlFor="upload"
+            className="btn btn-primary mx-2 mb-4"
+            tabIndex="0"
+          >
+            <span className="d-none d-sm-block">انتخاب تصویر</span>
+            <i className="bx bx-upload d-block d-sm-none"></i>
+            <input
+              type="file"
+              id="upload"
+              className="account-file-input hidden"
+              hidden=""
+              accept="image/png, image/jpeg"
+            />
+          </label>
+          <button
+            type="button"
+            className="btn btn-outline-secondary account-image-reset mb-4"
+          >
+            <i className="bx bx-reset d-block d-sm-none"></i>
+            <span className="d-none d-sm-block">ریست</span>
+          </button>
 
-            <p class="text-muted mb-0">
-              Allowed JPG, GIF or PNG. Max size of 800K
-            </p>
+          <p className="text-muted mb-0">
+            Allowed JPG, GIF or PNG. Max size of 800K
+          </p>
+        </div>
+      </div>
+      <hr className="my-0 my-3" />
+      <div>
+        <div className="row">
+          <div className="mb-3 col-md-6">
+            <Label text="نام : " htmlFor="name" />
+            <InputText
+              id="name"
+              placeHolder="نام"
+              value={personnel.name}
+              onHandleChangeValue={(val) => {
+                onHandleSetValue("name", val);
+              }}
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <Label text="نام خانوادگی : " htmlFor="family" />
+            <InputText
+              id="family"
+              placeHolder="نام خانوادگی"
+              value={personnel.family}
+              onHandleChangeValue={(val) => {
+                onHandleSetValue("family", val);
+              }}
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <Label text="شماره پرسنلی : " htmlFor="personnelNumber" />
+            <InputText
+              id="personnelNumber"
+              placeHolder="نام شماره پرسنلی"
+              value={personnel.personnelNumber}
+              onHandleChangeValue={(val) => {
+                onHandleSetValue("personnelNumber", val);
+              }}
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <Label text="تاریخ شروع قرارداد : " htmlFor="dateTimeOfStartWork" />
+            <InputDatePicker
+              id="dateTimeOfStartWork"
+              className="d-block"
+              value={personnel.dateTimeOfStartWork}
+              onHandleChangeValue={(val) => {
+                onHandleSetValue("dateTimeOfStartWork", val);
+              }}
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <Label text="تاریخ پایان قرارداد : " htmlFor="dateTimeOfEndWork" />
+            <InputDatePicker
+              id="dateTimeOfEndWork"
+              className="d-block"
+              value={personnel.dateTimeOfEndWork}
+              onHandleChangeValue={(val) => {
+                onHandleSetValue("dateTimeOfEndWork", val);
+              }}
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <Label text="محل خدمت : " htmlFor="serviceLocation" />
+            {locationServices === null ? (
+              <>
+                <LoaderSpinnerSmall className="mx-2 text-warning" />
+              </>
+            ) : (
+              <></>
+            )}
+            <InputSelecte
+              id="serviceLocation"
+              placeHolder="محل خدمت"
+              options={locationServices}
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <Label text="تلفن محل خدمت : " htmlFor="serviceLocationPhone" />
+            <InputText
+              id="serviceLocationPhone"
+              placeHolder="تلفن محل خدمت"
+              value={personnel.serviceLocationPhone}
+              onHandleChangeValue={(val) => {
+                onHandleSetValue("serviceLocationPhone", val);
+              }}
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+          </div>
+          <div className="mb-3 col-md-6">
+            <InputSwitch
+              text="فعال بودن پرسنل"
+              id="isActive"
+              value={personnel.isActive}
+              onHandleChangeValue={(val) => {
+                onHandleSetValue("isActive", val);
+              }}
+            />
+            <InputSwitch
+              text="استثنا بودن پرسنل"
+              id="isSpecial"
+              className="mt-2"
+              value={personnel.isSpecial}
+              onHandleChangeValue={(val) => {
+                onHandleSetValue("isSpecial", val);
+              }}
+            />
           </div>
         </div>
-      <hr class="my-0 my-3" />
- <form id="formAccountSettings" method="POST" onsubmit="return false">
-          <div class="row">
-          <div class="mb-3 col-md-6">
-            <Label text='نام : ' htmlFor='name' />
-            <InputText id='name' placeHolder='نام'
-              value={personnel.name}
-              onHandleChangeValue={(val) => { 
-                console.log('AFTER : ',val);
-                HandleSetValue('name',val)
-              }
-              } />
-            </div>
-            <div class="mb-3 col-md-6">
-              <Label text='نام خانوادگی : ' htmlFor='lastName' />
-              <InputText id='lastName' placeHolder='نام خانوادگی' />
-            </div>
-            <div class="mb-3 col-md-6">
-              <Label text='شماره پرسنلی : ' htmlFor='personnelNumber' />
-              <InputText id='personnelNumber' placeHolder='نام شماره پرسنلی' />
-            </div>
-            <div class="mb-3 col-md-6">
-              <Label text='تاریخ شروع قرارداد : ' htmlFor='dateTimeOfStartWork' />
-              <InputDatePicker
-                id='dateTimeOfStartWork'
-                className='d-block' />
-            </div>
-            <div class="mb-3 col-md-6">
-              <Label text='تاریخ پایان قرارداد : ' htmlFor='dateTimeOfEndWork' />
-              <InputDatePicker
-                id='dateTimeOfEndWork'
-                className='d-block' />
-            </div>
-            <div class="mb-3 col-md-6">
-              <Label text='محل خدمت : ' htmlFor='serviceLocation' />
-              {locationServices === null ? <>
-                <LoaderSpinnerSmall className="mx-2 text-warning" />
-              </>:<></>}
-              <InputSelecte id='serviceLocation'
-                placeHolder='محل خدمت' options={locationServices} />
-            </div>
-            <div class="mb-3 col-md-6">
-              <Label text='تلفن محل خدمت : ' htmlFor='serviceLocationPhone' />
-              <InputText id='serviceLocationPhone' placeHolder='تلفن محل خدمت' />
-            </div>
-          </div>
-          <div class="mt-2">
-            <button type="submit" class="btn btn-primary mx-2">
-              ثبت تغییرات
-            </button>
-            <button type="reset" class="btn btn-outline-secondary">
-              برگشت
-            </button>
-          </div>
-        </form>
+        <div className="mt-2">
+          <button type="submit" className="btn btn-primary mx-2">
+            ثبت تغییرات
+          </button>
+          <button type="reset" className="btn btn-outline-secondary">
+            برگشت
+          </button>
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default PersonnelCharacterCom
+export default PersonnelCharacterCom;

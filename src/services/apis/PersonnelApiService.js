@@ -13,7 +13,7 @@ const PersonnelApiService = {
       console.error("PersonnelApiService->GetTableAsync", error);
       return {
         isSuccess: false,
-        Messages: ["خطای اتصال به سرور"],
+        messages: ["خطای اتصال به سرور"],
       };
     }
   },

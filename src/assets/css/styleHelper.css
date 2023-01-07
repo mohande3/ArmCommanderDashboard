@@ -42,3 +42,10 @@
 .datePicker .rmdp-container {
   width: 100% !important;
 }
+.form-check .form-check-input{
+  float: right !important;
+}
+.form-switch .form-check-input{
+  margin-right: unset !important;
+  margin-left: 7px !important;
+}

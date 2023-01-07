@@ -29,11 +29,12 @@ function PersonnelTableCom() {
   ];
   const LoadData = async () => {
     let dataFromServer = await PersonnelApiService.GetTableAsync();
-    console.log(dataFromServer)
+    console.log(dataFromServer);
     if (dataFromServer.isSuccess) {
       setPersonnels(dataFromServer.result.results);
     } else {
       toast.error(dataFromServer.messages[0]);
+      setPersonnels([]);
     }
   };
   useEffect(() => {
