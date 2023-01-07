@@ -17,4 +17,4 @@ function Card({ className = "", id = "", title = "", titleElement, children }) {
   );
 }
 
-export default Card;
+export { Card };

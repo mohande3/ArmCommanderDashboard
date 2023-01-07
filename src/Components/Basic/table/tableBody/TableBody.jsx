@@ -1,6 +1,12 @@
 import React from "react";
 
 function TableBody({ columns = [], rows = [] }) {
+  if (rows == null)
+    return (
+      <tbody>
+        <div className="alert alert-warning">Not loaded</div>
+      </tbody>
+    );
   return (
     <tbody>
       {rows.map((row, index) => {
