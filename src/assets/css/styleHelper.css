@@ -32,3 +32,6 @@
   right: 0 !important;
   left: unset !important;
 }
+.nav-align-top > .nav, .nav-align-top > div > .nav, .nav-align-right > .nav, .nav-align-right > div > .nav, .nav-align-bottom > .nav, .nav-align-bottom > div > .nav, .nav-align-left > .nav, .nav-align-left > div > .nav{
+  padding: 0px !important;
+}

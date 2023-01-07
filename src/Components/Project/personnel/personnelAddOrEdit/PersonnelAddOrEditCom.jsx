@@ -16,9 +16,6 @@ function PersonnelAddOrEditCom() {
             aria-selected="false"
           >
             <i class="tf-icons bx bx-home"></i> Home
-            <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-danger">
-              3
-            </span>
           </button>
         </li>
         <li class="nav-item">
