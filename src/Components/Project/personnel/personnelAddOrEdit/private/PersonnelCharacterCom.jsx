@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, InputDatePicker, InputText, Label } from '../../../../Basic/formControlls/FormControlls'
+import { Input, InputDatePicker, InputSelecte, InputText, Label } from '../../../../Basic/formControlls/FormControlls'
 
 function PersonnelCharacterCom() {
   return (
@@ -58,62 +58,25 @@ function PersonnelCharacterCom() {
               <InputText id='personnelNumber' placeHolder='نام شماره پرسنلی' />
             </div>
             <div class="mb-3 col-md-6">
+              <Label text='تاریخ شروع قرارداد : ' htmlFor='dateTimeOfStartWork' />
+              <InputDatePicker
+                id='dateTimeOfStartWork'
+                className='d-block' />
+            </div>
+            <div class="mb-3 col-md-6">
               <Label text='تاریخ پایان قرارداد : ' htmlFor='dateTimeOfEndWork' />
               <InputDatePicker
                 id='dateTimeOfEndWork'
                 className='d-block' />
             </div>
             <div class="mb-3 col-md-6">
-              <label class="form-label" for="phoneNumber">
-                Phone Number
-              </label>
-              <div class="input-group input-group-merge">
-                <span class="input-group-text">US (+1)</span>
-                <input
-                  type="text"
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  class="form-control"
-                  placeholder="202 555 0111"
-                />
-              </div>
+              <Label text='محل خدمت : ' htmlFor='serviceLocation' />
+              <InputSelecte id='serviceLocation'
+                placeHolder='محل خدمت' options={null} />
             </div>
             <div class="mb-3 col-md-6">
-              <label for="address" class="form-label">
-                Address
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="address"
-                name="address"
-                placeholder="Address"
-              />
-            </div>
-            <div class="mb-3 col-md-6">
-              <label for="state" class="form-label">
-                State
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                id="state"
-                name="state"
-                placeholder="California"
-              />
-            </div>
-            <div class="mb-3 col-md-6">
-              <label for="zipCode" class="form-label">
-                Zip Code
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="zipCode"
-                name="zipCode"
-                placeholder="231465"
-                maxlength="6"
-              />
+              <Label text='تلفن محل خدمت : ' htmlFor='serviceLocationPhone' />
+              <InputText id='serviceLocationPhone' placeHolder='تلفن محل خدمت' />
             </div>
             <div class="mb-3 col-md-6">
               <label class="form-label" for="country">

@@ -3,6 +3,7 @@ import DatePicker from 'react-multi-date-picker'
 import DatePickerHeader from 'react-multi-date-picker/plugins/date_picker_header'
 import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
+import InputSelectePrivate from './private/InputSelecte'
 
 const Label = ({className='',id='',text='',htmlFor=''}) => {
     return (
@@ -29,6 +30,8 @@ const InputDatePicker = ({className=''}) => {
         calendarPosition="bottom-right"/>
     </div>
 }
+const InputSelecte = ({className='',id='',options=[]}) => {
+    return <InputSelectePrivate className={className} id={id} options={options} />
+}
 
-
-export {Label,Input,InputText,InputDatePicker}
+export {Label,Input,InputText,InputDatePicker,InputSelecte}
