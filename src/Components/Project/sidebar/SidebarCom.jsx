@@ -56,6 +56,11 @@ function SidebarCom() {
                   <div data-i18n="Without menu">مدیریت پرسنل</div>
                 </Link>
               </li>
+              <li class="menu-item">
+                <Link to="/personnel/add" className="menu-link">
+                  <div data-i18n="Without menu">اضافه کردن پرسنل</div>
+                </Link>
+              </li>
             </ul>
           </li>
 
