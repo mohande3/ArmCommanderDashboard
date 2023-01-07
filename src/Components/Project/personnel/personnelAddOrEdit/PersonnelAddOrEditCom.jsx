@@ -3,7 +3,6 @@ import { Card } from "../../../Basic/card/Card";
 
 function PersonnelAddOrEditCom() {
   return (
-    <Card title="اضافه کردن پرسنل جدید">
       <div class="nav-align-top mb-4">
         <ul class="nav nav-tabs nav-fill" role="tablist">
           <li class="nav-item">
@@ -116,7 +115,6 @@ function PersonnelAddOrEditCom() {
           </form>
         </div>
       </div>
-    </div>
   );
 }
 
