@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
+import PersonnelApiService from "../../../../services/apis/PersonnelApiService";
 import { Card } from "../../../Basic/card/Card";
 import PersonnelAssignToDeviceOrGroupCom from "./private/PersonnelAssignToDeviceOrGroupCom";
 import PersonnelCharacterCom from "./private/PersonnelCharacterCom";
@@ -26,7 +28,7 @@ function PersonnelAddOrEditCom() {
     PersonnelDevices: [],
     CarStationId: 0,
     CarPathCode: "",
-    PersonnelImage: "",
+    personnelImage: "",
     PersonnelImageBase64: "",
   });
   const HandleSetValue = (property, value) => {
@@ -34,6 +36,14 @@ function PersonnelAddOrEditCom() {
     data[property] = value;
     setPersonnel({...data});
   };
+  const HandleAddOrUpdate = async () => { 
+    let resultFromServer = await PersonnelApiService.AddOrUpdateAsync(personnel);
+    if (resultFromServer.isSuccess) {
+      toast.success('شخص به درستی اضافه شد');
+    } else {
+      toast.error(resultFromServer.messages[0]);
+    }
+  }
   return (
     <div className="nav-align-top mb-4">
       <ul className="nav nav-pills mb-3 nav-fill" role="tablist">
@@ -87,6 +97,7 @@ function PersonnelAddOrEditCom() {
           <PersonnelCharacterCom
             personnel={personnel}
             onHandleSetValue={HandleSetValue}
+            onHandleAddOrUpdate = {HandleAddOrUpdate}
           />
         </div>
         <div

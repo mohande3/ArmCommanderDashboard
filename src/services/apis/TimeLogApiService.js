@@ -14,7 +14,7 @@ const TimeLogApiService = {
       console.error("TimeLogApiService->GetTableAsync", error);
       return {
         isSuccess: false,
-        Messages: ["خطای اتصال به سرور"],
+        messages: ["خطای اتصال به سرور"],
       };
     }
   },
