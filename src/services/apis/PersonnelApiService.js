@@ -18,10 +18,11 @@ const PersonnelApiService = {
       };
     }
   },
+
   AddOrUpdateAsync: async (personnel) => {
     try {
 
-      console.log('SEND DATA : ', personnel);
+      console.log('SEND DATA TO SERVER : ', personnel);
       var bodyFormData = new FormData();
       bodyFormData.append('personnelNumber', personnel.personnelNumber);
       bodyFormData.append('personnelImage', personnel.personnelImage); 
