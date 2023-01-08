@@ -7,23 +7,29 @@ function PersonnelTableCom() {
   const [personnels, setPersonnels] = useState(null);
   const columns = [
     {
-      title: "id",
+      title: "کد",
       property: "id",
+      render: (row) => {
+        return <td>
+          <span className="ms-2">{row["id"]}</span>
+          <img src="../assets/img/avatars/1.png" className="img-personnel-table"/>
+        </td>
+      }
     },
     {
-      title: "personnelNumber",
+      title: "کد پرسنلی",
       property: "personnelNumber",
     },
     {
-      title: "fullName",
+      title: "نام کامل",
       property: "fullName",
     },
     {
-      title: "dateTimeOfStartWork",
+      title: "تاریخ شروع به کار",
       property: "dateTimeOfStartWork",
     },
     {
-      title: "dateTimeOfEndWork",
+      title: "تاریخ پایان کار",
       property: "dateTimeOfEndWork",
     },
   ];
