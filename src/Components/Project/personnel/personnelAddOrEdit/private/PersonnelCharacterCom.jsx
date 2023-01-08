@@ -12,13 +12,21 @@ import {
   LoaderSpinnerSmall,
 } from "../../../../Basic/loader/LoaderSpinner";
 
-function PersonnelCharacterCom({ personnel, onHandleSetValue }) {
+function PersonnelCharacterCom({ personnel, onHandleSetValue,onHandleAddOrUpdate }) {
   const [locationServices, setLocationServices] = useState(null);
+  const GetImage = () => {
+    if (!personnel.personnelImage)
+      return "../assets/img/avatars/1.png";
+    return personnel.personnelImage;
+  }
+  const HandleChangeImage = e => {
+    onHandleSetValue('personnelImage',URL.createObjectURL(e.target.files[0]))
+  }
   return (
     <>
       <div className="d-flex align-items-start align-items-sm-center gap-4">
         <img
-          src="../assets/img/avatars/1.png"
+          src={GetImage()}
           alt="user-avatar"
           className="d-block rounded"
           height="100"
@@ -39,9 +47,11 @@ function PersonnelCharacterCom({ personnel, onHandleSetValue }) {
               className="account-file-input hidden"
               hidden=""
               accept="image/png, image/jpeg"
+              onChange={HandleChangeImage}
             />
           </label>
           <button
+            onClick={e=>onHandleSetValue('personnelImage',null)}
             type="button"
             className="btn btn-outline-secondary account-image-reset mb-4"
           >
@@ -161,7 +171,7 @@ function PersonnelCharacterCom({ personnel, onHandleSetValue }) {
           </div>
         </div>
         <div className="mt-2">
-          <button type="submit" className="btn btn-primary mx-2">
+          <button type="submit" className="btn btn-primary mx-2" onClick={onHandleAddOrUpdate}>
             ثبت تغییرات
           </button>
           <button type="reset" className="btn btn-outline-secondary">
