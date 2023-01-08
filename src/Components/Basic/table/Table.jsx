@@ -2,10 +2,10 @@ import React from "react";
 import TableBody from "./tableBody/TableBody";
 import TableHeader from "./tableHeader/TableHeader";
 
-function Table({ id = "", columns = [], rows = [] }) {
+function Table({ type='',id = "", columns = [], rows = [] }) {
   return (
-    <table className="table">
-      <TableHeader columns={columns} />
+    <table className="table table-responsive">
+      <TableHeader columns={columns} type={type} />
       <TableBody columns={columns} rows={rows} />
     </table>
   );

@@ -4,7 +4,7 @@ import AddressApiService from "./AddressApiService";
 const PersonnelApiService = {
   GetTableAsync: async () => {
     try {
-      console.warn('ADDRESS : ',AddressApiService.Personnel.GetTable)
+      console.warn("ADDRESS : ", AddressApiService.Personnel.GetTable);
       let resultFromServer = await axios.post(
         AddressApiService.Personnel.GetTable,
         {}
@@ -21,17 +21,27 @@ const PersonnelApiService = {
 
   AddOrUpdateAsync: async (personnel) => {
     try {
-
-      console.log('SEND DATA TO SERVER : ', personnel);
+      console.log("SEND DATA TO SERVER : ", personnel);
       var bodyFormData = new FormData();
-      bodyFormData.append('personnelNumber', personnel.personnelNumber);
-      bodyFormData.append('personnelImage', personnel.personnelImage); 
-      bodyFormData.append('name', personnel.name); 
-      bodyFormData.append('family', personnel.family); 
-      bodyFormData.append('dateTimeOfStartWork', personnel.dateTimeOfStartWork); 
-      bodyFormData.append('dateTimeOfEndWork', personnel.dateTimeOfEndWork); 
-      bodyFormData.append('serviceLocationPhone', personnel.serviceLocationPhone); 
-      bodyFormData.append('nameFather', personnel.nameFather); 
+      bodyFormData.append("personnelNumber", personnel.personnelNumber);
+      bodyFormData.append("personnelImage", personnel.personnelImage);
+      bodyFormData.append("name", personnel.name);
+      bodyFormData.append("family", personnel.family);
+      bodyFormData.append("dateTimeOfStartWork", personnel.dateTimeOfStartWork);
+      bodyFormData.append("dateTimeOfEndWork", personnel.dateTimeOfEndWork);
+      bodyFormData.append("isActive", personnel.isActive==="1");
+      bodyFormData.append("isSpecial", personnel.isSpecial==="1");
+      bodyFormData.append("dateTimeOfBirthDay", personnel.dateTimeOfBirthDay);
+      bodyFormData.append("locationOfBirth", personnel.locationOfBirth);
+      bodyFormData.append("nameFather", personnel.nameFather);
+      bodyFormData.append("nationalId", personnel.nationalId);
+      bodyFormData.append("sex", personnel.sex);
+      bodyFormData.append("locationOfBirth", personnel.locationOfBirth);
+      bodyFormData.append(
+        "serviceLocationPhone",
+        personnel.serviceLocationPhone
+      );
+      bodyFormData.append("nameFather", personnel.nameFather);
 
       let resultFromServer = await axios.post(
         AddressApiService.Personnel.AddOrUpdate,
@@ -39,8 +49,8 @@ const PersonnelApiService = {
         { "Content-Type": "multipart/form-data" }
       );
       return resultFromServer.data;
-    } catch (error) { 
-      console.error("PersonnelApiService->GetTableAsync", error);
+    } catch (error) {
+      console.error("PersonnelApiService->AddOrUpdateAsync", error);
       return {
         isSuccess: false,
         messages: ["خطای اتصال به سرور"],

@@ -1,5 +1,5 @@
 import React from "react";
-import DatePicker from "react-multi-date-picker";
+import DatePicker, { DateObject } from "react-multi-date-picker";
 import DatePickerHeader from "react-multi-date-picker/plugins/date_picker_header";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -70,7 +70,8 @@ const InputDatePicker = ({
       console.warn(`Not exist onHandleChangeValue for ${id} controll`);
       return;
     }
-    onHandleChangeValue(data);
+    console.log(data)
+    onHandleChangeValue(data.unix);
   };
   return (
     <div className={"datePicker " + className}>
@@ -78,7 +79,7 @@ const InputDatePicker = ({
         plugins={[<DatePickerHeader position="left" />]}
         calendar={persian}
         locale={persian_fa}
-        value={value}
+        value={new DateObject(value*1000)}
         onChange={HandleChangeValue}
         inputClass="form-control"
         calendarPosition="bottom-right"
@@ -136,4 +137,16 @@ const InputSwitch = ({
   );
 };
 
-export { Label, Input, InputText, InputDatePicker, InputSelecte, InputSwitch };
+// ====================== SHOW
+const ShowDateFromUnix = ({ unix }) => {
+  if (!unix) {
+    console.warn('UNIX can not be null or empty');
+    return;
+  }
+  let date = new DateObject({
+    date: Number(unix) * 1000
+  });
+  return <span>{date.convert(persian,persian_fa).format()}</span>;
+}
+
+export { Label, Input, InputText, InputDatePicker, InputSelecte, InputSwitch,ShowDateFromUnix };

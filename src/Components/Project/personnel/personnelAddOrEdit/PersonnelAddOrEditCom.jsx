@@ -24,26 +24,27 @@ function PersonnelAddOrEditCom() {
     education: "",
     serviceLocation: "",
     selfPhone: "",
-    
+
     PersonnelDevices: [],
     CarStationId: 0,
     CarPathCode: "",
-    personnelImage: "",
-    PersonnelImageBase64: "",
+    personnelImage: ""
   });
   const HandleSetValue = (property, value) => {
     let data = personnel;
     data[property] = value;
-    setPersonnel({...data});
+    setPersonnel({ ...data });
   };
-  const HandleAddOrUpdate = async () => { 
-    let resultFromServer = await PersonnelApiService.AddOrUpdateAsync(personnel);
+  const HandleAddOrUpdate = async () => {
+    let resultFromServer = await PersonnelApiService.AddOrUpdateAsync(
+      personnel
+    );
     if (resultFromServer.isSuccess) {
-      toast.success('شخص به درستی اضافه شد');
+      toast.success("شخص به درستی اضافه شد");
     } else {
       toast.error(resultFromServer.messages[0]);
     }
-  }
+  };
   return (
     <div className="nav-align-top mb-4">
       <ul className="nav nav-pills mb-3 nav-fill" role="tablist">
@@ -97,7 +98,7 @@ function PersonnelAddOrEditCom() {
           <PersonnelCharacterCom
             personnel={personnel}
             onHandleSetValue={HandleSetValue}
-            onHandleAddOrUpdate = {HandleAddOrUpdate}
+            onHandleAddOrUpdate={HandleAddOrUpdate}
           />
         </div>
         <div

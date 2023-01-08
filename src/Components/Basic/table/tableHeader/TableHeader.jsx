@@ -1,8 +1,8 @@
 import React from "react";
 
-function TableHeader({ columns = [] }) {
+function TableHeader({ columns = [], type = "" }) {
   return (
-    <thead>
+    <thead className={!type ? "" : "table-" + type}>
       <tr>
         {columns.map((col, index) => (
           <th key={index}>{col.title}</th>

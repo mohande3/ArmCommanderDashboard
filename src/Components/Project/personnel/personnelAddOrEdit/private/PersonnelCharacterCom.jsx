@@ -17,10 +17,10 @@ function PersonnelCharacterCom({ personnel, onHandleSetValue,onHandleAddOrUpdate
   const GetImage = () => {
     if (!personnel.personnelImage)
       return "../assets/img/avatars/1.png";
-    return personnel.personnelImage;
+    return URL.createObjectURL(personnel.personnelImage);
   }
   const HandleChangeImage = e => {
-    onHandleSetValue('personnelImage',URL.createObjectURL(e.target.files[0]))
+    onHandleSetValue('personnelImage',e.target.files[0])
   }
   return (
     <>

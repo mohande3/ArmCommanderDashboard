@@ -54,3 +54,18 @@
   height: 40px;
   border-radius: 50%;
 }
+
+.table-primary-2 {
+  --bs-table-bg: #1a68ee;
+  --bs-table-striped-bg: #dcdefb;
+  --bs-table-striped-color: #435971;
+  --bs-table-active-bg: #d1d4f1;
+  --bs-table-active-color: #0f56a3;
+  --bs-table-hover-bg: #d8daf6;
+  --bs-table-hover-color: #435971;
+  color: #dfdfdf;
+  border-color: #d1d4f1;
+}
+.table-primary-2 th{
+  color: rgb(255, 255, 255) !important;
+}
