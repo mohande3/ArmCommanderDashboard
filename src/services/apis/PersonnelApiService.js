@@ -4,6 +4,7 @@ import AddressApiService from "./AddressApiService";
 const PersonnelApiService = {
   GetTableAsync: async () => {
     try {
+      console.warn('ADDRESS : ',AddressApiService.Personnel.GetTable)
       let resultFromServer = await axios.post(
         AddressApiService.Personnel.GetTable,
         {}
