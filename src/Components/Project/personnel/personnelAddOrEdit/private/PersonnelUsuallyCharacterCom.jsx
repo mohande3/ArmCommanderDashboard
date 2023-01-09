@@ -12,7 +12,11 @@ import {
   LoaderSpinnerSmall,
 } from "../../../../Basic/loader/LoaderSpinner";
 
-function PersonnelUsuallyCharacterCom({ personnel, onHandleSetValue }) {
+function PersonnelUsuallyCharacterCom({
+  personnel,
+  onHandleSetValue,
+  onHandleAddOrUpdate,
+}) {
   const [locationServices, setLocationServices] = useState(null);
   return (
     <>
@@ -93,7 +97,11 @@ function PersonnelUsuallyCharacterCom({ personnel, onHandleSetValue }) {
         </div>
       </div>
       <div className="mt-2">
-        <button type="submit" className="btn btn-primary mx-2">
+        <button
+          type="submit"
+          className="btn btn-primary mx-2"
+          onClick={(e) => onHandleAddOrUpdate()}
+        >
           ثبت تغییرات
         </button>
         <button type="reset" className="btn btn-outline-secondary">

@@ -29,6 +29,10 @@ const Input = ({
     }
     onHandleChangeValue(e.target.value);
   };
+  if (value === null || value === undefined) {
+    value = '';
+    console.warn(`VALUE can not be null or empty for : ${id}`)
+  }
   return (
     <input
       className={"form-control " + className}

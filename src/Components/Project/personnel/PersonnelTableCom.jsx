@@ -5,8 +5,12 @@ import PersonnelApiService from "../../../services/apis/PersonnelApiService";
 import { toast } from "react-hot-toast";
 import { DateObject } from "react-multi-date-picker";
 import { ShowDateFromUnix } from "../../Basic/formControlls/FormControlls";
+import { useNavigate } from "react-router-dom";
+import Modal, { ModalDelete, ModalShowBtn } from "../../Basic/modal/Modal";
 function PersonnelTableCom() {
   const [personnels, setPersonnels] = useState(null);
+  const [personnelIdForDelete, setPersonnelIdForDelete] = useState(undefined);
+  const navigate = useNavigate();
   const columns = [
     {
       title: "کد",
@@ -125,14 +129,48 @@ function PersonnelTableCom() {
       render: (row) => {
         return (
           <td>
-            <button className="btn btn-sm btn-warning">EDIT</button>
-            <button className="btn btn-sm btn-danger mx-2">DELE</button>
+            <button
+              className="btn btn-sm btn-warning"
+              onClick={(e) =>
+                navigate(`/personnel/edit/${row["personnelNumber"]}`)
+              }
+            >
+              EDIT
+            </button>
+            <ModalShowBtn
+              text="DELT"
+              modalId="modalDelete"
+              className="btn-sm btn-danger me-2"
+              onHandleClick={(e) => {
+                console.log(row["id"]);
+                setPersonnelIdForDelete(row["id"])
+              }}
+            />
           </td>
         );
       },
     },
   ];
+  const ConfirmDelete = async () => {
+    console.log(personnelIdForDelete);
+    if (personnelIdForDelete === undefined || personnelIdForDelete === null) {
+      toast.warn("لطفا یک شخص را برای حذف انتخاب کنید . ");
+      return;
+    }
+    console.log(personnelIdForDelete);
+    let resultFromServer = await PersonnelApiService.DeleteByIdAsync(
+      personnelIdForDelete
+    );
+    console.log(resultFromServer);
+    if (resultFromServer.isSuccess) {
+      toast.success("حذف شخص به درستی انجام شد . ");
+      await LoadData();
+    } else {
+      toast.error(resultFromServer.messages[0]);
+    }
+  };
   const LoadData = async () => {
+    setPersonnels(null);
     let dataFromServer = await PersonnelApiService.GetTableAsync();
     console.log(dataFromServer);
     if (dataFromServer.isSuccess) {
@@ -146,9 +184,16 @@ function PersonnelTableCom() {
     LoadData();
   }, []);
   return (
-    <Card title="مدیریت کاربران">
-      <Table columns={columns} rows={personnels} type={"primary-2"} />
-    </Card>
+    <>
+      <ModalDelete
+        id="modalDelete"
+        text="آیا از حذف این شخص اطمینان دارید ؟ "
+        onHandleClickConfirm={ConfirmDelete}
+      />
+      <Card title="مدیریت کاربران">
+        <Table columns={columns} rows={personnels} type={"primary-2"} />
+      </Card>
+    </>
   );
 }
 

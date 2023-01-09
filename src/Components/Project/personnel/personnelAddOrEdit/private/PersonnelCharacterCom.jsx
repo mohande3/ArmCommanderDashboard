@@ -12,16 +12,56 @@ import {
   LoaderSpinnerSmall,
 } from "../../../../Basic/loader/LoaderSpinner";
 
-function PersonnelCharacterCom({ personnel, onHandleSetValue,onHandleAddOrUpdate }) {
+function PersonnelCharacterCom({
+  personnel,
+  onHandleSetValue,
+  onHandleAddOrUpdate,
+  isEdit = false,
+}) {
   const [locationServices, setLocationServices] = useState(null);
+  const [isChangeImage, setIsChangeImage] = useState(false);
+  console.log("EDIT : ", isEdit);
   const GetImage = () => {
-    if (!personnel.personnelImage)
-      return "../assets/img/avatars/1.png";
-    return URL.createObjectURL(personnel.personnelImage);
-  }
-  const HandleChangeImage = e => {
-    onHandleSetValue('personnelImage',e.target.files[0])
-  }
+    if (!isChangeImage) {
+      if (
+        isEdit &&
+        personnel.personnelImage !== undefined &&
+        personnel.personnelImage !== null &&
+        personnel.personnelImage !== ""
+      )
+        return `data:image/jpeg;base64,${personnel.personnelImage}`;
+      else if (isEdit) return "../../assets/img/avatars/1.png";
+
+      if (
+        personnel.personnelImage === undefined ||
+        personnel.personnelImage === null ||
+        personnel.personnelImage === ""
+      )
+        return "../assets/img/avatars/1.png";
+      return URL.createObjectURL(personnel.personnelImage);
+    } else {
+      if (
+        isEdit &&
+        personnel.personnelImage !== undefined &&
+        personnel.personnelImage !== null &&
+        personnel.personnelImage !== ""
+      )
+        return URL.createObjectURL(personnel.personnelImage);
+      else if (isEdit) return "../../assets/img/avatars/1.png";
+
+      if (
+        personnel.personnelImage === undefined ||
+        personnel.personnelImage === null ||
+        personnel.personnelImage === ""
+      )
+        return "../assets/img/avatars/1.png";
+      return URL.createObjectURL(personnel.personnelImage);
+    }
+  };
+  const HandleChangeImage = (e) => {
+    setIsChangeImage(true);
+    onHandleSetValue("personnelImage", e.target.files[0]);
+  };
   return (
     <>
       <div className="d-flex align-items-start align-items-sm-center gap-4">
@@ -51,7 +91,7 @@ function PersonnelCharacterCom({ personnel, onHandleSetValue,onHandleAddOrUpdate
             />
           </label>
           <button
-            onClick={e=>onHandleSetValue('personnelImage',null)}
+            onClick={(e) => onHandleSetValue("personnelImage", null)}
             type="button"
             className="btn btn-outline-secondary account-image-reset mb-4"
           >
@@ -148,8 +188,7 @@ function PersonnelCharacterCom({ personnel, onHandleSetValue,onHandleAddOrUpdate
               }}
             />
           </div>
-          <div className="mb-3 col-md-6">
-          </div>
+          <div className="mb-3 col-md-6"></div>
           <div className="mb-3 col-md-6">
             <InputSwitch
               text="فعال بودن پرسنل"
@@ -171,7 +210,11 @@ function PersonnelCharacterCom({ personnel, onHandleSetValue,onHandleAddOrUpdate
           </div>
         </div>
         <div className="mt-2">
-          <button type="submit" className="btn btn-primary mx-2" onClick={onHandleAddOrUpdate}>
+          <button
+            type="submit"
+            className="btn btn-primary mx-2"
+            onClick={onHandleAddOrUpdate}
+          >
             ثبت تغییرات
           </button>
           <button type="reset" className="btn btn-outline-secondary">

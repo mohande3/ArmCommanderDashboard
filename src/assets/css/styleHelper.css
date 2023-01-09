@@ -69,3 +69,10 @@
 .table-primary-2 th{
   color: rgb(255, 255, 255) !important;
 }
+
+.modal-header{
+  padding-left:0px !important
+}
+.modal-header .btn-close{
+  margin-left: 0px !important;
+}
