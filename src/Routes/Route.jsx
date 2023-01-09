@@ -16,7 +16,11 @@ function FullRoute() {
           <Route path="/timelogs" element={<TimeLogTable />} />
           <Route path="/personnel" element={<PersonnelTable />} />
           <Route path="/personnel/add" element={<PersonnelAddOrEdit />} />
-          <Route path="/personnel/edit/:personnelNumber" element={<PersonnelAddOrEdit />} />
+          <Route
+            path="/personnel/edit/:personnelNumber"
+            element={<PersonnelAddOrEdit />}
+          />
+          <Route path="/devices" element={<DeviceTable />} />
         </Route>
       </Routes>
     </>

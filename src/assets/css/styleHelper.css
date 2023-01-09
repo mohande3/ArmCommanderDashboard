@@ -76,3 +76,9 @@
 .modal-header .btn-close{
   margin-left: 0px !important;
 }
+
+.card-header-2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

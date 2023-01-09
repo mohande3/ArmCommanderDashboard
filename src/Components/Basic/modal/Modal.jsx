@@ -1,6 +1,36 @@
 import React from "react";
 
-function Modal({ id = "", title, children, modalFooter }) {
+function Modal({ id = "", title, children, modalFooter, onHandleClickConfirm }) {
+  const HandleClickConfirm = () => {
+    if (!onHandleClickConfirm) {
+      console.warn(`onHandleClickConfirm not exist in ${id}`);
+      return;
+    }
+    onHandleClickConfirm();
+  }
+  const GetFooter = () => {
+    if (modalFooter) return <div class="modal-footer">{modalFooter}</div>;
+    return (
+      <div class="modal-footer">
+        <>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-bs-dismiss="modal"
+          >
+            برگشت
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            onClick={HandleClickConfirm}
+          >
+            تایید
+          </button>
+        </>
+      </div>
+    );
+  };
   return (
     <>
       <div
@@ -25,7 +55,7 @@ function Modal({ id = "", title, children, modalFooter }) {
               ></button>
             </div>
             <div class="modal-body">{children}</div>
-            <div class="modal-footer">{modalFooter}</div>
+            {GetFooter()}
           </div>
         </div>
       </div>
@@ -33,7 +63,7 @@ function Modal({ id = "", title, children, modalFooter }) {
   );
 }
 
-const ModalDelete = ({ id = "", text='', onHandleClickConfirm }) => {
+const ModalDelete = ({ id = "", text = "", onHandleClickConfirm }) => {
   const HandleClickConfirm = () => {
     if (onHandleClickConfirm === undefined || onHandleClickConfirm === null) {
       console.warn(`onHandleClickConfirm not exist in ${id}`);
@@ -54,7 +84,11 @@ const ModalDelete = ({ id = "", text='', onHandleClickConfirm }) => {
           >
             برگشت
           </button>
-          <button type="button" class="btn btn-danger" onClick={HandleClickConfirm}>
+          <button
+            type="button"
+            class="btn btn-danger"
+            onClick={HandleClickConfirm}
+          >
             تایید
           </button>
         </>
@@ -94,4 +128,4 @@ const ModalShowBtn = ({
 };
 
 export default Modal;
-export { ModalShowBtn,ModalDelete };
+export { ModalShowBtn, ModalDelete };

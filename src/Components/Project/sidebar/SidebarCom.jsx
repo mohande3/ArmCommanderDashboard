@@ -61,6 +61,11 @@ function SidebarCom() {
                   <div data-i18n="Without menu">اضافه کردن پرسنل</div>
                 </Link>
               </li>
+              <li className="menu-item">
+                <Link to="/devices" className="menu-link">
+                  <div data-i18n="Without menu">دستگاه ها</div>
+                </Link>
+              </li>
             </ul>
           </li>
 
@@ -74,7 +79,10 @@ function SidebarCom() {
             </a>
             <ul className="menu-sub">
               <li className="menu-item">
-                <a href="pages-account-settings-account.html" className="menu-link">
+                <a
+                  href="pages-account-settings-account.html"
+                  className="menu-link"
+                >
                   <div data-i18n="Account">Account</div>
                 </a>
               </li>
@@ -143,7 +151,10 @@ function SidebarCom() {
                 </a>
               </li>
               <li className="menu-item">
-                <a href="pages-misc-under-maintenance.html" className="menu-link">
+                <a
+                  href="pages-misc-under-maintenance.html"
+                  className="menu-link"
+                >
                   <div data-i18n="Under Maintenance">Under Maintenance</div>
                 </a>
               </li>
@@ -273,7 +284,10 @@ function SidebarCom() {
             </a>
             <ul className="menu-sub">
               <li className="menu-item">
-                <a href="extended-ui-perfect-scrollbar.html" className="menu-link">
+                <a
+                  href="extended-ui-perfect-scrollbar.html"
+                  className="menu-link"
+                >
                   <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>
                 </a>
               </li>
