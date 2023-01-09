@@ -33,22 +33,39 @@ const DeviceApiService = {
 
   AddOrUpdateAsync: async (device) => {
     try {
-      console.log(device);
-      return axios.post(AddressApiService.Device.AddOrUpdate, {
-        serialNumber: device.serialNumber,
-        ipAddress: device.ipAddress,
-        portNumber: device.portNumber,
-        name: device.name,
-        description: device.description,
-        version: device.version,
-        location: device.location,
-        macAddress: device.macAddress,
-        typeOfDevice: device.typeOfDevice,
-        gateId: device.gateId,
-        carId: device.carId,
-      });
+      let dataForSend = {};
+      if (device.serialNumber) dataForSend.serialNumber = device.serialNumber;
+      if (device.ipAddress) dataForSend.ipAddress = device.ipAddress;
+      if (device.name) dataForSend.name = device.name;
+      if (device.portNumber) dataForSend.portNumber = device.portNumber;
+      if (device.description) dataForSend.description = device.description;
+      if (device.version) dataForSend.version = device.version;
+      if (device.location) dataForSend.location = device.location;
+      if (device.macAddress) dataForSend.macAddress = device.macAddress;
+      if (device.typeOfDevice) dataForSend.typeOfDevice = device.typeOfDevice;
+      if (device.gateId) dataForSend.gateId = device.gateId;
+      if (device.carId) dataForSend.carId = device.carId;
+      let result = await axios.post(
+        AddressApiService.Device.AddOrUpdate,
+        dataForSend
+      );
+      return result.data;
     } catch (error) {
       console.error("DeviceApiService->AddOrUpdateAsync", error);
+      return {
+        isSuccess: false,
+        messages: ["خطای اتصال به سرور"],
+      };
+    }
+  },
+  DeleteBySerialNumber: async (serialNumber) => {
+    try {
+      let resultFromServer = await axios.post(
+        AddressApiService.Device.DeleteBySerialNumber + serialNumber
+      );
+      return resultFromServer.data;
+    } catch (error) {
+      console.error("DeviceApiService->DeleteBySerialNumber", error);
       return {
         isSuccess: false,
         messages: ["خطای اتصال به سرور"],

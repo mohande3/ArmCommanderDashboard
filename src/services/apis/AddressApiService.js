@@ -7,6 +7,9 @@ const AddressApiService = {
     GetTable: baseAddress + "Kara2000api/v1/DeviceApi/GetsTable",
     Gets: baseAddress + "Kara2000api/v1/DeviceApi/Gets",
     AddOrUpdate: baseAddress + "Kara2000api/v1/DeviceApi/AddOrUpdate",
+    DeleteBySerialNumber:
+      baseAddress +
+      "Kara2000api/v1/DeviceApi/DeleteBySerialNumber?serialNumber=",
   },
   Personnel: {
     GetTable: baseAddress + "Kara2000api/v1/PersonnelApi/GetTable",

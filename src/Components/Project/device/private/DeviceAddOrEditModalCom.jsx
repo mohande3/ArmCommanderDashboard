@@ -1,9 +1,18 @@
-import React from 'react'
-import { Col, Row } from '../../../Basic/containers/Containers';
-import { InputText, Label } from '../../../Basic/formControlls/FormControlls';
-import Modal from '../../../Basic/modal/Modal'
+import React from "react";
+import StaticValuesService from "../../../../services/StaticValuesService";
+import { Col, Row } from "../../../Basic/containers/Containers";
+import {
+  InputSelecte,
+  InputText,
+  Label,
+} from "../../../Basic/formControlls/FormControlls";
+import Modal from "../../../Basic/modal/Modal";
 
-function DeviceAddOrEditModalCom({device,onHandleSetValue,onHandleClickConfirm}) {
+function DeviceAddOrEditModalCom({
+  device,
+  onHandleSetValue,
+  onHandleClickConfirm,
+}) {
   return (
     <Modal
       id="ModalAddEditDevice"
@@ -50,8 +59,28 @@ function DeviceAddOrEditModalCom({device,onHandleSetValue,onHandleClickConfirm})
           />
         </Col>
       </Row>
+      <Row className="mt-3">
+        <Col col="6">
+          <Label htmlFor="typeOfDevice" text="انتخاب نوع دستگاه : " />
+          <InputSelecte
+            id="typeOfDevice"
+            defaultValue={device.typeOfDevice}
+            options={StaticValuesService.TypeOfDevices}
+            onHandleChangeValue={(val) => onHandleSetValue("typeOfDevice", val)}
+          />
+        </Col>
+        <Col col="6">
+          {/* <Label htmlFor="portNumber" text="پورت دستگاه : " />
+          <InputText
+            id="portNumber"
+            placeHolder="پورت دستگاه"
+            value={device.portNumber}
+            onHandleChangeValue={(val) => onHandleSetValue("portNumber", val)}
+          /> */}
+        </Col>
+      </Row>
     </Modal>
   );
 }
 
-export default DeviceAddOrEditModalCom
+export default DeviceAddOrEditModalCom;

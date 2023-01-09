@@ -13,6 +13,10 @@ const StaticValuesService = {
     { name: "فوق لیسانس", value: "5" },
     { name: "دکتری", value: "6" },
   ],
+  TypeOfDevices: [
+    { name: "نامشخص", value: "0" },
+    { name: "دبلیو سون پلاس", value: "1" },
+  ],
 };
 
 export default StaticValuesService;

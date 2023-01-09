@@ -16,6 +16,7 @@ import { Col, Row } from "../../Basic/containers/Containers";
 import DeviceAddOrEditModalCom from "./private/DeviceAddOrEditModalCom";
 function DeviceTableCom() {
   const [devices, setDevices] = useState(null);
+  const [deviceIdForDelete, setDeviceIdForDelete] = useState(null);
   const [device, setDevice] = useState({
     serialNumber: "",
     ipAddress: "",
@@ -37,7 +38,7 @@ function DeviceTableCom() {
     },
     {
       title: "نام گیت",
-      property: "gateName",
+      property: "name",
     },
     {
       title: "سریال",
@@ -57,16 +58,49 @@ function DeviceTableCom() {
       },
     },
     {
-      title: "سریال",
-      property: "serialNumber",
+      title: "نوع دستگاه",
+      property: "typeOfDevice",
+      render: row => {
+        let type = row["typeOfDevice"];
+        if (type == "1")
+          return <td>
+            <span className="badge bg-primary">W7 PLUS</span>
+          </td>
+      }
     },
     {
-      title: "تاریخ پایان کار",
-      property: "dateTimeOfEndWork",
+      title: "",
+      property: "",
       render: (row) => {
         return (
           <td>
-            <ShowDateFromUnix unix={row["dateTimeOfEndWork"]} />
+            <ModalShowBtn
+              className="btn-sm btn-warning"
+              modalId="ModalAddEditDevice"
+              text="EDI"
+              onHandleClick={(e) => {
+                setDevice({
+                  serialNumber: row["serialNumber"],
+                  ipAddress: row["ipAddress"],
+                  portNumber: row["portNumber"],
+                  name: row["name"],
+                  description: row["description"],
+                  version: row["version"],
+                  location: row["location"],
+                  macAddress: row["macAddress"],
+                  dateTimeOfCurrent: row["dateTimeOfCurrent"],
+                  typeOfDevice: row["typeOfDevice"],
+                  gateId: row["gateId"],
+                  carId: row["carId"],
+                });
+              }}
+            />
+            <ModalShowBtn
+              className="btn-sm btn-danger me-2"
+              text="DEL"
+              modalId="modalDeleteDevice"
+              onHandleClick={(e) => setDeviceIdForDelete(row["serialNumber"])}
+            />
           </td>
         );
       },
@@ -74,12 +108,28 @@ function DeviceTableCom() {
   ];
   const HandleAddOrUpdate = async () => {
     let resultFromServer = await DeviceApiService.AddOrUpdateAsync(device);
+    console.log(resultFromServer);
     if (resultFromServer.isSuccess) {
+      toast.success("اضافه کردن دستگاه به درستی انجام شد .");
       await LoadData();
     } else {
       toast.error(resultFromServer.messages[0]);
     }
   };
+  const HandleConfirmDelete = async () => {
+    if (!deviceIdForDelete) {
+      toast.warn('لطفا یک دستگاه را برای حذف انتخاب کنید . ');
+      return;
+    }
+    let resultFromServer = await DeviceApiService.DeleteBySerialNumber(deviceIdForDelete);
+    if (resultFromServer.isSuccess) {
+      toast.success('دستگاه به درستی حذف شد . ')
+      await LoadData();
+    } else {
+      toast.error(resultFromServer.messages[0]);
+      console.error(resultFromServer);
+    }
+  }
   const HandleSetValue = (property, value) => {
     let tempDevice = device;
     tempDevice[property] = value;
@@ -87,12 +137,11 @@ function DeviceTableCom() {
   };
   const LoadData = async () => {
     let resultFromServer = await DeviceApiService.GetTableAsync();
-    console.log(resultFromServer)
-    // if (resultFromServer.isSuccess) {
-    //   setDevices(resultFromServer.result.results);
-    // } else {
-    //   toast.error(resultFromServer.messages[0]);
-    // }
+    if (resultFromServer.isSuccess) {
+      setDevices(resultFromServer.result.results);
+    } else {
+      toast.error(resultFromServer.messages[0]);
+    }
     console.log(resultFromServer);
   };
   useEffect(() => {
@@ -100,6 +149,10 @@ function DeviceTableCom() {
   }, []);
   return (
     <>
+      <ModalDelete
+        id="modalDeleteDevice"
+        onHandleClickConfirm={HandleConfirmDelete}
+      />
       <DeviceAddOrEditModalCom
         device={device}
         onHandleSetValue={HandleSetValue}
