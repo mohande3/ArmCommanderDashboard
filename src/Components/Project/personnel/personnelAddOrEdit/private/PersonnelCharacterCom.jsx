@@ -20,7 +20,6 @@ function PersonnelCharacterCom({
 }) {
   const [locationServices, setLocationServices] = useState(null);
   const [isChangeImage, setIsChangeImage] = useState(false);
-  console.log("EDIT : ", isEdit);
   const GetImage = () => {
     if (!isChangeImage) {
       if (

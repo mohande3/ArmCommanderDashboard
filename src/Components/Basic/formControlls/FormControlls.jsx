@@ -4,6 +4,7 @@ import DatePickerHeader from "react-multi-date-picker/plugins/date_picker_header
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import InputSelectePrivate from "./private/InputSelecte";
+import InputListCheckGroupPrivate from "./private/InputListCheckGroupPrivate";
 
 const Label = ({ className = "", id = "", text = "", htmlFor = "" }) => {
   return (
@@ -30,8 +31,8 @@ const Input = ({
     onHandleChangeValue(e.target.value);
   };
   if (value === null || value === undefined) {
-    value = '';
-    console.warn(`VALUE can not be null or empty for : ${id}`)
+    value = "";
+    console.warn(`VALUE can not be null or empty for : ${id}`);
   }
   return (
     <input
@@ -74,7 +75,7 @@ const InputDatePicker = ({
       console.warn(`Not exist onHandleChangeValue for ${id} controll`);
       return;
     }
-    console.log(data)
+    console.log(data);
     onHandleChangeValue(data.unix);
   };
   return (
@@ -83,7 +84,7 @@ const InputDatePicker = ({
         plugins={[<DatePickerHeader position="left" />]}
         calendar={persian}
         locale={persian_fa}
-        value={new DateObject(value*1000)}
+        value={new DateObject(value * 1000)}
         onChange={HandleChangeValue}
         inputClass="form-control"
         calendarPosition="bottom-right"
@@ -109,10 +110,22 @@ const InputSelecte = ({
   );
 };
 
+const InputListCheckGroup = ({ rows = [], valueSelected = []
+  , onHandleChangeValue, id = "" }) => {
+  return (
+    <InputListCheckGroupPrivate
+      rows={rows}
+      onHandleChangeValue={onHandleChangeValue}
+      valueSelected={valueSelected}
+      id={id}
+    />
+  );
+};
+
 const InputSwitch = ({
   text = "",
   id = "",
-  value='',
+  value = "",
   className = "",
   onHandleChangeValue,
 }) => {
@@ -140,17 +153,58 @@ const InputSwitch = ({
     </div>
   );
 };
-
+const InputCheckBox = ({
+  className = "",
+  id = "",
+  text = "",
+  value,
+  onHandleChangeValue,
+}) => {
+  const HandleChangeValue = (data) => {
+    if (onHandleChangeValue === null || onHandleChangeValue === undefined) {
+      console.warn(`Not exist onHandleChangeValue for ${id} controll`);
+      return;
+    }
+    onHandleChangeValue(data === true ? "1" : "0");
+  };
+  return (
+    <div className={className}>
+      <div className={"form-check "}>
+        <input
+          className="form-check-input"
+          type="checkbox"
+          // value={value}
+          id={id}
+          checked={value == "1"}
+          onChange={(e) => HandleChangeValue(e.target.checked)}
+        />
+        <label className="form-check-label" htmlFor={id}>
+          {text}
+        </label>
+      </div>
+    </div>
+  );
+};
 // ====================== SHOW
 const ShowDateFromUnix = ({ unix }) => {
   if (!unix) {
-    console.warn('UNIX can not be null or empty');
+    console.warn("UNIX can not be null or empty");
     return;
   }
   let date = new DateObject({
-    date: Number(unix) * 1000
+    date: Number(unix) * 1000,
   });
-  return <span>{date.convert(persian,persian_fa).format()}</span>;
-}
+  return <span>{date.convert(persian, persian_fa).format()}</span>;
+};
 
-export { Label, Input, InputText, InputDatePicker, InputSelecte, InputSwitch,ShowDateFromUnix };
+export {
+  Label,
+  Input,
+  InputText,
+  InputDatePicker,
+  InputSelecte,
+  InputListCheckGroup,
+  InputSwitch,
+  InputCheckBox,
+  ShowDateFromUnix,
+};

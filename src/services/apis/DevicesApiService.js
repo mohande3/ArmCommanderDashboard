@@ -20,7 +20,7 @@ const DeviceApiService = {
   },
   GetsAsync: async () => {
     try {
-      let resultFromServer = await axios.post(AddressApiService.Device.Gets);
+      let resultFromServer = await axios.post(AddressApiService.Device.Gets, {});
       return resultFromServer.data;
     } catch (error) {
       console.error("DeviceApiService->GetsAsync", error);

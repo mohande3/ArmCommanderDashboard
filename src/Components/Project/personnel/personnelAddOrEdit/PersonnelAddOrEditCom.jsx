@@ -46,7 +46,8 @@ function PersonnelAddOrEditCom() {
         toast.success("شخص به درستی اضافه شد");
       else toast.success("شخص به درستی ویرایش شد");
     } else {
-      toast.error(resultFromServer.messages[0]);
+      console.error(resultFromServer);
+      resultFromServer.messages.forEach((msg) => toast.error(msg));
     }
   };
   const LoadData = async () => {
@@ -76,10 +77,8 @@ function PersonnelAddOrEditCom() {
     } else {
       toast.error(resultFromServer.messages[0]);
     }
-    console.log(resultFromServer);
   };
   useEffect(() => {
-    console.log(personnelNumber.personnelNumber);
     if (
       personnelNumber.personnelNumber !== undefined &&
       personnelNumber.personnelNumber !== null
@@ -159,7 +158,11 @@ function PersonnelAddOrEditCom() {
           id="navs-pills-justified-messages"
           role="tabpanel"
         >
-          <PersonnelAssignToDeviceOrGroupCom />
+          <PersonnelAssignToDeviceOrGroupCom
+            personnel={personnel}
+            onHandleSetValue={HandleSetValue}
+
+          />
         </div>
       </div>
     </div>

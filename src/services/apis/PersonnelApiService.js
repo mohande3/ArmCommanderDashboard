@@ -74,6 +74,10 @@ const PersonnelApiService = {
           "serviceLocationPhone",
           personnel.serviceLocationPhone
         );
+      if (personnel.PersonnelDevices != null)
+        personnel.PersonnelDevices.forEach(function (value) {
+          bodyFormData.append("PersonnelDevices[]", value); // you have to add array symbol after the key name
+        });
 
       let resultFromServer = await axios.post(
         AddressApiService.Personnel.AddOrUpdate,
