@@ -27,7 +27,8 @@ function PersonnelAddOrEditCom() {
     serviceLocation: "",
     selfPhone: "",
 
-    PersonnelDevices: [],
+    PersonnelAssignToDevices: [],
+    PersonnelUnAssignFromDevices: [],
     CarStationId: 0,
     CarPathCode: "",
     personnelImage: "",
@@ -50,10 +51,24 @@ function PersonnelAddOrEditCom() {
       resultFromServer.messages.forEach((msg) => toast.error(msg));
     }
   };
+  const GetPersonnelDevicesFromReceivePersonnel = (person) => {
+    if (
+      person.personnelDevices === null ||
+      person.personnelDevices === undefined ||
+      person.personnelDevices.length === 0
+    )
+      return [];
+    console.log(
+      "GETDEVICES : ",
+      person.personnelDevices.map((dev) => dev.serialNumber)
+    );
+    return person.personnelDevices.map((dev) => dev.serialNumber);
+  };
   const LoadData = async () => {
     let resultFromServer = await PersonnelApiService.GetAsync(
       personnelNumber.personnelNumber
     );
+
     if (resultFromServer.isSuccess) {
       setPersonnel({
         personnelNumber: resultFromServer.result.personnelNumber,
@@ -73,10 +88,14 @@ function PersonnelAddOrEditCom() {
         serviceLocation: resultFromServer.result.serviceLocation,
         selfPhone: resultFromServer.result.selfPhone,
         personnelImage: resultFromServer.result.personnelImage,
+        PersonnelAssignToDevices: GetPersonnelDevicesFromReceivePersonnel(
+          resultFromServer.result
+        ),
       });
     } else {
       toast.error(resultFromServer.messages[0]);
     }
+    console.log(resultFromServer);
   };
   useEffect(() => {
     if (
@@ -161,7 +180,7 @@ function PersonnelAddOrEditCom() {
           <PersonnelAssignToDeviceOrGroupCom
             personnel={personnel}
             onHandleSetValue={HandleSetValue}
-
+            onHandleAddOrUpdate={HandleAddOrUpdate}
           />
         </div>
       </div>

@@ -7,7 +7,12 @@ import {
 import { InputListGroup } from "../../../../Basic/formControlls/FormControlls";
 import DeviceListGroupCom from "../../../device/DeviceListGroupCom";
 
-function PersonnelAssignToDeviceOrGroupCom({ personnel, onHandleSetValue }) {
+function PersonnelAssignToDeviceOrGroupCom({
+  personnel,
+  onHandleSetValue,
+  onHandleAddOrUpdate,
+}) {
+  console.log("PERSON TO ASSIGN", personnel);
   return (
     <Row>
       <Col col="6">
@@ -15,7 +20,7 @@ function PersonnelAssignToDeviceOrGroupCom({ personnel, onHandleSetValue }) {
         <DividerPrimary />
         <DeviceListGroupCom
           className="ms-2"
-          deviceCheckeds={personnel.PersonnelDevices}
+          deviceCheckeds={personnel.PersonnelAssignToDevices}
           onHandleChangeValue={(serial, isCheck) => {
             if (!onHandleSetValue) {
               console.warn(
@@ -24,16 +29,31 @@ function PersonnelAssignToDeviceOrGroupCom({ personnel, onHandleSetValue }) {
               return;
             }
             if (isCheck == "1") {
-              let newData = personnel.PersonnelDevices;
+              //-- ADD
+              let newData = personnel.PersonnelAssignToDevices;
               if (newData === undefined || newData === null) newData = [];
               newData = newData.filter((str) => str !== serial);
               newData.push(serial);
-              onHandleSetValue("PersonnelDevices", newData);
-            } else {
-              let newData = personnel.PersonnelDevices;
+              onHandleSetValue("PersonnelAssignToDevices", newData);
+
+              //-- REMOVE
+              newData = personnel.PersonnelUnAssignFromDevices;
               if (newData === undefined || newData === null) newData = [];
               newData = newData.filter((str) => str !== serial);
-              onHandleSetValue("PersonnelDevices", newData);
+              onHandleSetValue("PersonnelUnAssignFromDevices", newData);
+            } else {
+              //-- ADD
+              let newData = personnel.PersonnelAssignToDevices;
+              if (newData === undefined || newData === null) newData = [];
+              newData = newData.filter((str) => str !== serial);
+              onHandleSetValue("PersonnelAssignToDevices", newData);
+
+              //-- REMOVE
+              newData = personnel.PersonnelUnAssignFromDevices;
+              if (newData === undefined || newData === null) newData = [];
+              newData = newData.filter((str) => str !== serial);
+              newData.push(serial);
+              onHandleSetValue("PersonnelUnAssignFromDevices", newData);
             }
           }}
         />
@@ -42,6 +62,18 @@ function PersonnelAssignToDeviceOrGroupCom({ personnel, onHandleSetValue }) {
         <strong className="text-danger">گروه های دستگاهی</strong>
         <DividerDanger />
       </Col>
+      <div className="mt-3">
+        <button
+          type="submit"
+          className="btn btn-primary mx-2"
+          onClick={onHandleAddOrUpdate}
+        >
+          ثبت تغییرات
+        </button>
+        <button type="reset" className="btn btn-outline-secondary">
+          برگشت
+        </button>
+      </div>
     </Row>
   );
 }
