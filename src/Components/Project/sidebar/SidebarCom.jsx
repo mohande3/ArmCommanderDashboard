@@ -66,6 +66,11 @@ function SidebarCom() {
                   <div data-i18n="Without menu">دستگاه ها</div>
                 </Link>
               </li>
+              <li className="menu-item">
+                <Link to="/stations" className="menu-link">
+                  <div data-i18n="Without menu">ایستگاه ها</div>
+                </Link>
+              </li>
             </ul>
           </li>
 

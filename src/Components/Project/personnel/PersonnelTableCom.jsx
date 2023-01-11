@@ -16,10 +16,11 @@ function PersonnelTableCom() {
       title: "کد",
       property: "id",
       render: (row) => {
+        console.log(row["personnelImage"]);
         return (
           <td>
             <span className="ms-2">{row["id"]}</span>
-            {row["personnelImage"] != null ? (
+            {row["personnelImage"] != null && row["personnelImage"] != "" ? (
               <>
                 <img
                   src={`data:image/jpeg;base64,${row["personnelImage"]}`}
@@ -143,7 +144,7 @@ function PersonnelTableCom() {
               className="btn-sm btn-danger me-2"
               onHandleClick={(e) => {
                 console.log(row["id"]);
-                setPersonnelIdForDelete(row["id"])
+                setPersonnelIdForDelete(row["id"]);
               }}
             />
           </td>

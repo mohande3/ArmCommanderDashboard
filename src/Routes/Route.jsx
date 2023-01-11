@@ -5,6 +5,7 @@ import DeviceTable from "../Pages/device/DeviceTable";
 import BaseLayout from "../Pages/Layout/BaseLayout";
 import PersonnelAddOrEdit from "../Pages/personnel/PersonnelAddOrEdit";
 import PersonnelTable from "../Pages/personnel/PersonnelTable";
+import StationTable from "../Pages/station/StationTable";
 import TimeLogTable from "../Pages/timelog/TimeLogTable";
 
 function FullRoute() {
@@ -21,6 +22,7 @@ function FullRoute() {
             element={<PersonnelAddOrEdit />}
           />
           <Route path="/devices" element={<DeviceTable />} />
+          <Route path="/stations" element={<StationTable />} />
         </Route>
       </Routes>
     </>

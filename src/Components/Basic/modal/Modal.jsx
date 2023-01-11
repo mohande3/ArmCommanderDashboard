@@ -9,20 +9,20 @@ function Modal({ id = "", title, children, modalFooter, onHandleClickConfirm }) 
     onHandleClickConfirm();
   }
   const GetFooter = () => {
-    if (modalFooter) return <div class="modal-footer">{modalFooter}</div>;
+    if (modalFooter) return <div className="modal-footer">{modalFooter}</div>;
     return (
-      <div class="modal-footer">
+      <div className="modal-footer">
         <>
           <button
             type="button"
-            class="btn btn-outline-secondary"
+            className="btn btn-outline-secondary"
             data-bs-dismiss="modal"
           >
             برگشت
           </button>
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
             onClick={HandleClickConfirm}
           >
             تایید
@@ -34,27 +34,27 @@ function Modal({ id = "", title, children, modalFooter, onHandleClickConfirm }) 
   return (
     <>
       <div
-        class="modal "
+        className="modal "
         id={id}
-        tabindex="-1"
+        tabIndex="-1"
         aria-modal="true"
         role="dialog"
         data-bs-backdrop="static"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel1">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel1">
                 {title}
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">{children}</div>
+            <div className="modal-body">{children}</div>
             {GetFooter()}
           </div>
         </div>
@@ -79,14 +79,14 @@ const ModalDelete = ({ id = "", text = "", onHandleClickConfirm }) => {
         <>
           <button
             type="button"
-            class="btn btn-outline-secondary"
+            className="btn btn-outline-secondary"
             data-bs-dismiss="modal"
           >
             برگشت
           </button>
           <button
             type="button"
-            class="btn btn-danger"
+            className="btn btn-danger"
             onClick={HandleClickConfirm}
           >
             تایید
@@ -117,7 +117,7 @@ const ModalShowBtn = ({
     <button
       type="button"
       id={id}
-      class={"btn " + className}
+      className={"btn " + className}
       data-bs-toggle="modal"
       data-bs-target={"#" + modalId}
       onClick={HandleClick}
