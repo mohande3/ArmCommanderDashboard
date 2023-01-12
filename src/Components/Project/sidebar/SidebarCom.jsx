@@ -65,16 +65,6 @@ function SidebarCom() {
                   <div data-i18n="Without menu">دستگاه ها</div>
                 </Link>
               </li>
-              <li className="menu-item">
-                <Link to="/tracking/stations" className="menu-link">
-                  <div data-i18n="Without menu">ایستگاه ها</div>
-                </Link>
-              </li>
-              <li className="menu-item">
-                <Link to="/tracking/services" className="menu-link">
-                  <div data-i18n="Without menu">سرویس ها</div>
-                </Link>
-              </li>
             </ul>
           </li>
           {/* <li className="menu-header small text-uppercase">
@@ -112,6 +102,24 @@ function SidebarCom() {
               <li className="menu-item">
                 <Link to="/timeLogs" className="menu-link">
                   <div data-i18n="Without menu">گزارش ترددها</div>
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li className="menu-item">
+            <a href="#" className="menu-link menu-toggle">
+              <i className="menu-icon tf-icons bx bx-box"></i>
+              <div data-i18n="User interface">مدیریت ناوگان خودرویی</div>
+            </a>
+            <ul className="menu-sub">
+              <li className="menu-item">
+                <Link to="/tracking/stations" className="menu-link">
+                  <div data-i18n="Without menu">ایستگاه ها</div>
+                </Link>
+              </li>
+              <li className="menu-item">
+                <Link to="/tracking/services" className="menu-link">
+                  <div data-i18n="Without menu">سرویس ها</div>
                 </Link>
               </li>
             </ul>
