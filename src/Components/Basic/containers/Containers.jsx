@@ -9,5 +9,8 @@ const Row = ({ className = "", children }) => {
 const Col = ({ className = "", col = "", children }) => {
   return <div className={"col-" + col + " " + className}>{children}</div>;
 };
+const InlineDisplay = ({ className = "", children }) => {
+  return <div className={"d-flex flex-row align-items-center form-inline "+className}>{children}</div>;
+};
 
-export { Container, Row, Col };
+export { Container, Row, Col ,InlineDisplay};

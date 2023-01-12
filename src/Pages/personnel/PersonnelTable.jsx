@@ -5,7 +5,7 @@ import PersonnelTableCom from "../../Components/Project/personnel/PersonnelTable
 function PersonnelTable() {
   return (
     <>
-      <PersonnelTableCom />
+      <PersonnelTableCom isShowSearchSection={false} />
     </>
   );
 }

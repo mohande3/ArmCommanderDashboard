@@ -8,7 +8,9 @@ import { ShowDateFromUnix } from "../../Basic/formControlls/FormControlls";
 import { useNavigate } from "react-router-dom";
 import Modal, { ModalDelete, ModalShowBtn } from "../../Basic/modal/Modal";
 import AuthService from "../../../services/AuthService";
-function PersonnelTableCom() {
+import PersonnelSearchTableCom from "./private/PersonnelSearchTableCom";
+import Divider, { DividerInfo} from "../../Basic/divider/Divider"
+function PersonnelTableCom({isShowSearchSection=true}) {
   const [personnels, setPersonnels] = useState(null);
   const [personnelIdForDelete, setPersonnelIdForDelete] = useState(undefined);
   const navigate = useNavigate();
@@ -171,9 +173,9 @@ function PersonnelTableCom() {
       toast.error(resultFromServer.messages[0]);
     }
   };
-  const LoadData = async () => {
+  const LoadData = async (searchData) => {
     setPersonnels(null);
-    let dataFromServer = await PersonnelApiService.GetTableAsync();
+    let dataFromServer = await PersonnelApiService.GetTableAsync(searchData);
     if (AuthService.IsEndTokenAccess(dataFromServer)) {
       navigate("/login");
       toast.error("زمان لاگین شما به پایان رسیده است . ");
@@ -200,6 +202,16 @@ function PersonnelTableCom() {
         onHandleClickConfirm={ConfirmDelete}
       />
       <Card title="مدیریت کاربران">
+        {isShowSearchSection && (
+          <>
+            <PersonnelSearchTableCom
+              onHandleSearchClick={async (searchData) => {
+                await LoadData(searchData);
+              }}
+            />
+            <Divider />
+          </>
+        )}
         <Table columns={columns} rows={personnels} type={"primary-2"} />
       </Card>
     </>

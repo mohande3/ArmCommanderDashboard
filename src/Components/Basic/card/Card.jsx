@@ -1,9 +1,19 @@
 import React from "react";
 
-function Card({ className = "", id = "", title = "", titleElement, children }) {
+function Card({
+  className = "",
+  id = "",
+  title = "",
+  image = "",
+  titleElement,
+  children,
+}) {
   return (
     <>
       <div id={id} className={"card h-100 " + className}>
+        {image && (
+          <img className="card-img-top" src={image} alt="Card image cap" />
+        )}
         <div className="card-body">
           {titleElement === undefined ? (
             <h5 className="card-title">{title}</h5>

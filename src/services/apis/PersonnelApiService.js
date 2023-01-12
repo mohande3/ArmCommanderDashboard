@@ -2,12 +2,14 @@ import axios from "axios";
 import AddressApiService from "./AddressApiService";
 import AuthService from "../AuthService";
 const PersonnelApiService = {
-  GetTableAsync: async () => {
+  GetTableAsync: async (search) => {
     try {
-      console.warn("ADDRESS : ", AddressApiService.Personnel.GetTable);
+      let dataForSend = {};
+      if (search) dataForSend = { ...search };
       let resultFromServer = await axios.post(
         AddressApiService.Personnel.GetTable,
-        {},AuthService.GetHeaderAuth()
+        dataForSend,
+        AuthService.GetHeaderAuth()
       );
       return resultFromServer.data;
     } catch (error) {

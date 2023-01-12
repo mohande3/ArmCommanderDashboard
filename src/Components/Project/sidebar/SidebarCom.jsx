@@ -14,8 +14,8 @@ function SidebarCom() {
               <span className="app-brand-logo demo"></span>
               <span className="app-brand-text demo menu-text fw-bolder">
                 <strong className="text-uppercase">
-                  AR
-                  <span className="text-danger">M</span>
+                  <span className="text-danger">A</span>
+                  <span className="text-primary">RM</span>
                 </strong>
               </span>
             </a>
@@ -38,35 +38,6 @@ function SidebarCom() {
               <div data-i18n="Analytics">داشبورد</div>
             </a>
           </li>
-
-          <li className="menu-item">
-            <a href="#" className="menu-link menu-toggle">
-              <i className="menu-icon tf-icons bx bx-layout"></i>
-              <div data-i18n="Layouts">لینک کمکی</div>
-            </a>
-            <ul className="menu-sub">
-              <li className="menu-item">
-                <Link to="/timelogs" className="menu-link">
-                  <div data-i18n="Without menu">تردد لحظه ای</div>
-                </Link>
-              </li>
-              <li className="menu-item">
-                <Link to="/personnel" className="menu-link">
-                  <div data-i18n="Without menu">مدیریت پرسنل</div>
-                </Link>
-              </li>
-              <li className="menu-item">
-                <Link to="/personnel/add" className="menu-link">
-                  <div data-i18n="Without menu">اضافه کردن پرسنل</div>
-                </Link>
-              </li>
-              <li className="menu-item">
-                <Link to="/devices" className="menu-link">
-                  <div data-i18n="Without menu">دستگاه ها</div>
-                </Link>
-              </li>
-            </ul>
-          </li>
           {/* <li className="menu-header small text-uppercase">
             <span className="menu-header-text">مدیریت کاربران</span>
           </li> */}
@@ -86,6 +57,11 @@ function SidebarCom() {
                   <div data-i18n="Without menu">پرسنل</div>
                 </Link>
               </li>
+              <li className="menu-item">
+                <Link to="/personnel/add" className="menu-link">
+                  <div data-i18n="Without menu">اضافه کردن پرسنل</div>
+                </Link>
+              </li>
             </ul>
           </li>
           <li className="menu-item">
@@ -102,6 +78,24 @@ function SidebarCom() {
               <li className="menu-item">
                 <Link to="/timeLogs" className="menu-link">
                   <div data-i18n="Without menu">گزارش ترددها</div>
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li className="menu-item">
+            <a href="#" className="menu-link menu-toggle">
+              <i className="menu-icon tf-icons bx bx-box"></i>
+              <div data-i18n="User interface">مدیریت سخت افزار</div>
+            </a>
+            <ul className="menu-sub">
+              <li className="menu-item">
+                <Link to="/devices" className="menu-link">
+                  <div data-i18n="Without menu">دستگاه ها</div>
+                </Link>
+              </li>
+              <li className="menu-item">
+                <Link to="/gates" className="menu-link">
+                  <div data-i18n="Without menu">گیت ها</div>
                 </Link>
               </li>
             </ul>

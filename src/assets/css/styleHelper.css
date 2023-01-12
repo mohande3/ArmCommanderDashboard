@@ -102,3 +102,8 @@
 .menu-vertical .menu-item .menu-toggle {
   padding-right: 1rem !important;
 }
+
+.form-inline label{
+  min-width: max-content !important;
+  margin-left: 5px;
+}
