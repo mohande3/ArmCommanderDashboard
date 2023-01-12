@@ -14,13 +14,19 @@ function LoginCom() {
     password: "",
     isRememberMe: false,
   });
-  const navigate = useNavigate();
-  
+  const [isLogin, setIsLogin] = useState(false);
+
+  if (isLogin) {
+    toast.success("در حال ورود . ");
+    setTimeout(() => {
+      window.location.replace("/");
+    }, 1000);
+  }
   const Login = async () => {
     let resultFromServer = await AuthService.LoginAsync(user);
     console.log(resultFromServer);
     if (resultFromServer.isSuccess) {
-      navigate("/");
+      setIsLogin(true);
     } else {
       toast.error(resultFromServer.messages[0]);
       console.error(resultFromServer);
