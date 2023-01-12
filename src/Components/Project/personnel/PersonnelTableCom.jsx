@@ -7,6 +7,7 @@ import { DateObject } from "react-multi-date-picker";
 import { ShowDateFromUnix } from "../../Basic/formControlls/FormControlls";
 import { useNavigate } from "react-router-dom";
 import Modal, { ModalDelete, ModalShowBtn } from "../../Basic/modal/Modal";
+import AuthService from "../../../services/AuthService";
 function PersonnelTableCom() {
   const [personnels, setPersonnels] = useState(null);
   const [personnelIdForDelete, setPersonnelIdForDelete] = useState(undefined);
@@ -173,7 +174,12 @@ function PersonnelTableCom() {
   const LoadData = async () => {
     setPersonnels(null);
     let dataFromServer = await PersonnelApiService.GetTableAsync();
-    console.log(dataFromServer);
+    if (AuthService.IsEndTokenAccess(dataFromServer)) {
+      navigate("/login");
+      toast.error("زمان لاگین شما به پایان رسیده است . ");
+      return;
+    }
+
     if (dataFromServer.isSuccess) {
       setPersonnels(dataFromServer.result.results);
     } else {
@@ -182,7 +188,9 @@ function PersonnelTableCom() {
     }
   };
   useEffect(() => {
-    LoadData();
+    if (AuthService.IsAuthenticated()) {
+      LoadData();
+    }
   }, []);
   return (
     <>

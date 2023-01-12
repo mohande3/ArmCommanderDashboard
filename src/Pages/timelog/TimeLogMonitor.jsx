@@ -1,10 +1,13 @@
-import React from 'react'
-import TimeLogMonitorCom from '../../Components/Project/timelog/timeLogMonitor/TimeLogMonitorCom'
+import React from "react";
+import IsAuthenticatedCom from "../../Components/Project/auth/IsAuthenticatedCom";
+import TimeLogMonitorCom from "../../Components/Project/timelog/timeLogMonitor/TimeLogMonitorCom";
 
 function TimeLogMonitor() {
   return (
-    <TimeLogMonitorCom />
-  )
+    <>
+      <TimeLogMonitorCom />
+    </>
+  );
 }
 
-export default TimeLogMonitor
+export default TimeLogMonitor;

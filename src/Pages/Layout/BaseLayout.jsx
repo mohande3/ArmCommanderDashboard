@@ -3,6 +3,7 @@ import SidebarCom from "../../Components/Project/sidebar/SidebarCom";
 import NavbarCom from "../../Components/Project/navbar/NavbarCom";
 import { Outlet } from "react-router-dom";
 import { Container } from "../../Components/Basic/containers/Containers";
+import IsAuthenticatedCom from "../../Components/Project/auth/IsAuthenticatedCom";
 
 function BaseLayout() {
   const CreateScript = (path) => {
@@ -21,19 +22,22 @@ function BaseLayout() {
     console.log("ADD JSS");
   }, []);
   return (
-    <div className="layout-wrapper layout-content-navbar">
-      <div className="layout-container">
-        <SidebarCom />
-        <div className="layout-page">
-          <NavbarCom />
-          <Container className="mt-4">
-            <Outlet />
-          </Container>
+    <>
+      <IsAuthenticatedCom />
+      <div className="layout-wrapper layout-content-navbar">
+        <div className="layout-container">
+          <SidebarCom />
+          <div className="layout-page">
+            <NavbarCom />
+            <Container className="mt-4">
+              <Outlet />
+            </Container>
+          </div>
         </div>
-      </div>
 
-      <div className="layout-overlay layout-menu-toggle"></div>
-    </div>
+        <div className="layout-overlay layout-menu-toggle"></div>
+      </div>
+    </>
   );
 }
 
