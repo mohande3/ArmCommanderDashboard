@@ -11,12 +11,12 @@ const App = () => {
   };
 
   useEffect(() => {
-    CreateScript("/assets/vendor/libs/jquery/jquery.js");
-    CreateScript("/assets/vendor/libs/popper/popper.js");
-    CreateScript("/assets/vendor/js/bootstrap.js");
-    CreateScript("/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js");
-    CreateScript("/assets/vendor/js/menu.js");
-    CreateScript("/assets/js/main.js");
+    // CreateScript("/assets/vendor/libs/jquery/jquery.js");
+    // CreateScript("/assets/vendor/libs/popper/popper.js");
+    // CreateScript("/assets/vendor/js/bootstrap.js");
+    // CreateScript("/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js");
+    // CreateScript("/assets/vendor/js/menu.js");
+    // CreateScript("/assets/js/main.js");
   }, []);
 
   return (

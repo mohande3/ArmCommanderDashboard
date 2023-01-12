@@ -16,6 +16,10 @@ const AddressApiService = {
       baseAddress + "Kara2000api/v1/TrackingApi/TrackingStationAdd",
     TrackingStationGetTable:
       baseAddress + "Kara2000api/v1/TrackingApi/TrackingStationGetTable",
+    TrackingServiceGetTable:
+      baseAddress + "Kara2000api/v1/TrackingApi/ServiceGetTable",
+    TrackingServieAdd:
+      baseAddress + "Kara2000api/v1/TrackingApi/ServiceAddOrUpdate",
   },
   Personnel: {
     GetTable: baseAddress + "Kara2000api/v1/PersonnelApi/GetTable",
@@ -24,6 +28,13 @@ const AddressApiService = {
     GetByPersonnelNumber:
       baseAddress +
       "Kara2000api/v1/PersonnelApi/GetByPersonnelNumber?personnelNumber=",
+  },
+  User: {
+    GetTable: baseAddress + "v1/UsersApi/GetTable",
+    Add: baseAddress + "v1/UsersApi/AddAsync",
+  },
+  Auth: {
+    Login: baseAddress + "v1/AuthApi/LoginAsync",
   },
 };
 export default AddressApiService;

@@ -89,13 +89,16 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.form-check{
+.form-check {
   padding-left: unset !important;
   /* padding-right: 1.7em !important; */
 }
 .form-check .form-check-input {
   margin-right: -1.7em;
 }
-.form-check.list-group-item .form-check-input{
+.form-check.list-group-item .form-check-input {
   margin-right: 5px !important;
+}
+.menu-vertical .menu-item .menu-toggle {
+  padding-right: 1rem !important;
 }

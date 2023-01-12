@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import AuthService from "../../../services/AuthService";
 
 function NavbarCom() {
+  const navigate = useNavigate();
   return (
     <>
       <nav
@@ -50,12 +53,11 @@ function NavbarCom() {
                 <div className="avatar avatar-online">
                   <img
                     src="../assets/img/avatars/1.png"
-                    
                     className="w-px-40 h-auto rounded-circle"
                   />
                 </div>
               </a>
-              <ul className="dropdown-menu dropdown-menu-end">
+              <ul className="dropdown-menu dropdown-menu-start">
                 <li>
                   <a className="dropdown-item" href="#">
                     <div className="d-flex">
@@ -104,10 +106,16 @@ function NavbarCom() {
                   <div className="dropdown-divider"></div>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="auth-login-basic.html">
+                  <span
+                    className="dropdown-item"
+                    onClick={(e) => {
+                      AuthService.LogOut();
+                      navigate("/login");
+                    }}
+                  >
                     <i className="bx bx-power-off me-2"></i>
                     <span className="align-middle">Log Out</span>
-                  </a>
+                  </span>
                 </li>
               </ul>
             </li>

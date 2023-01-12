@@ -7,28 +7,32 @@ import Table from "../../Basic/table/Table";
 function TimeLogTableCom() {
   const columns = [
     {
-      title: "timeLogId",
+      title: "کد",
       property: "timeLogId",
     },
     {
-      title: "personNumber",
+      title: "کد پرسنلی",
       property: "personNumber",
     },
     {
-      title: "deviceSerialNumber",
+      title: "سریال دستگاه",
       property: "deviceSerialNumber",
     },
     {
-      title: "dateTimeOfTimeLog",
+      title: "تاریخ تردد",
       property: "dateTimeOfTimeLog",
     },
     {
-      title: "langitude",
-      property: "langitude",
+      title: "نوع تردد",
+      property: "dateTimeOfTimeLog",
     },
     {
-      title: "latitude",
-      property: "latitude",
+      title: "روش شناسایی",
+      property: "dateTimeOfTimeLog",
+    },
+    {
+      title: "مکان جغرافیایی",
+      property: "langitude",
     },
   ];
   const [timeLogs, setTimeLogs] = useState([]);
@@ -46,7 +50,7 @@ function TimeLogTableCom() {
   }, []);
   return (
     <Card title="ترددها">
-      <Table columns={columns} rows={timeLogs} />
+      <Table columns={columns} rows={timeLogs} type="primary-2" />
     </Card>
   );
 }

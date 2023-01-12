@@ -63,6 +63,24 @@ const InputText = ({
     />
   );
 };
+const InputPassword = ({
+  className = "",
+  placeHolder = "",
+  id = "",
+  value = "",
+  onHandleChangeValue,
+}) => {
+  return (
+    <Input
+      className={className}
+      placeHolder={placeHolder}
+      type="password"
+      id={id}
+      value={value}
+      onHandleChangeValue={onHandleChangeValue}
+    />
+  );
+};
 const InputDatePicker = ({
   id = "",
   className = "",
@@ -201,6 +219,7 @@ export {
   Label,
   Input,
   InputText,
+  InputPassword,
   InputDatePicker,
   InputSelecte,
   InputListCheckGroup,
