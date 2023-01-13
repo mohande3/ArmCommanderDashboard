@@ -13,6 +13,7 @@ import TimeLogMonitor from "../Pages/timelog/TimeLogMonitor";
 import Login from "../Pages/auth/Login";
 import PureLayout from "../Pages/Layout/PureLayout";
 import NotFound from "../Pages/errors/NotFound";
+import TrackingCarTable from "../Pages/trackingCar/TrackingCarTable";
 
 function FullRoute() {
   return (
@@ -33,6 +34,7 @@ function FullRoute() {
           <Route path="/devices" element={<DeviceTable />} />
           <Route path="/tracking/stations" element={<StationTable />} />
           <Route path="/tracking/services" element={<TrackingServiceTable />} />
+          <Route path="/tracking/trackingCars" element={<TrackingCarTable />} />
         </Route>
         <Route path="/login" element={<PureLayout />}>
           <Route path="/login" element={<Login />} />

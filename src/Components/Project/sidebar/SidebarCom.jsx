@@ -107,6 +107,11 @@ function SidebarCom() {
             </a>
             <ul className="menu-sub">
               <li className="menu-item">
+                <Link to="/tracking/trackingCars" className="menu-link">
+                  <div data-i18n="Without menu">گزارش مسیر حرکت خودرو</div>
+                </Link>
+              </li>
+              <li className="menu-item">
                 <Link to="/tracking/stations" className="menu-link">
                   <div data-i18n="Without menu">ایستگاه ها</div>
                 </Link>

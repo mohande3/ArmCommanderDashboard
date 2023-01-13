@@ -41,6 +41,21 @@ const TrackingServiceApiService = {
       };
     }
   },
+  GetsAsync: async () => {
+    try {
+      let resultFromServer = await axios.post(
+        AddressApiService.Tracking.TrackingServiceGets,
+        {}
+      );
+      return resultFromServer.data;
+    } catch (error) {
+      console.error("TrackingServiceApiService->GetTableAsync", error);
+      return {
+        isSuccess: false,
+        messages: ["خطای اتصال به سرور"],
+      };
+    }
+  },
   DeleteByCodeAsync: async () => {
     try {
       let resultFromServer = await axios.post(

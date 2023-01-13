@@ -14,15 +14,20 @@ const AddressApiService = {
       "Kara2000api/v1/DeviceApi/DeleteBySerialNumber?serialNumber=",
   },
   Tracking: {
+    // ========= CAR STATION API ADDRESS
     TrackingStationAddOrUpdate:
       baseAddress + "v1/TrackingApi/TrackingStationAddOrUpdate",
     TrackingStationGetTable:
       baseAddress + "v1/TrackingApi/TrackingStationGetTable",
     TrackingStationGets: baseAddress + "v1/TrackingApi/TrackingStationGets",
+    // =========== CAR SERVICE API ADDRESS
     TrackingServiceGetTable:
       baseAddress + "v1/TrackingApi/TrackingServiceGetTable",
+    TrackingServiceGets: baseAddress + "v1/TrackingApi/TrackingServiceGets",
     TrackingServieAdd:
       baseAddress + "v1/TrackingApi/TrackingServiceAddOrUpdate",
+    // ============= CAR TRACKING API ADDRESS
+    TrackingCarGetTable: baseAddress + "v1/TrackingApi/TrackingCarGetTable",
   },
   Personnel: {
     GetTable: baseAddress + "Kara2000api/v1/PersonnelApi/GetTable",

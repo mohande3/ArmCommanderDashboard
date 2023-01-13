@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import PersonnelApiService from "../../../../services/apis/PersonnelApiService";
 import { Card } from "../../../Basic/card/Card";
 import PersonnelAssignToDeviceOrGroupCom from "./private/PersonnelAssignToDeviceOrGroupCom";
+import PersonnelAssignToStationAndServiceCom from "./private/PersonnelAssignToStationAndServiceCom";
 import PersonnelCharacterCom from "./private/PersonnelCharacterCom";
 import PersonnelUsuallyCharacterCom from "./private/PersonnelUsuallyCharacterCom";
 
@@ -147,6 +148,20 @@ function PersonnelAddOrEditCom() {
             و دستگاه
           </button>
         </li>
+        <li className="nav-item">
+          <button
+            type="button"
+            className="nav-link"
+            role="tab"
+            data-bs-toggle="tab"
+            data-bs-target="#assignPersonnelToStation"
+            aria-controls="assignPersonnelToStation"
+            aria-selected="true"
+          >
+            اتصال شخص به یک ایستگاه خودروی
+            <i className="tf-icons bx bx-message-square"></i>
+          </button>
+        </li>
       </ul>
       <div className="tab-content">
         <div
@@ -178,6 +193,17 @@ function PersonnelAddOrEditCom() {
           role="tabpanel"
         >
           <PersonnelAssignToDeviceOrGroupCom
+            personnel={personnel}
+            onHandleSetValue={HandleSetValue}
+            onHandleAddOrUpdate={HandleAddOrUpdate}
+          />
+        </div>
+        <div
+          className="tab-pane fade"
+          id="assignPersonnelToStation"
+          role="tabpanel"
+        >
+          <PersonnelAssignToStationAndServiceCom
             personnel={personnel}
             onHandleSetValue={HandleSetValue}
             onHandleAddOrUpdate={HandleAddOrUpdate}
