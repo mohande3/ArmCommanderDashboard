@@ -2,7 +2,7 @@ import axios from "axios";
 import AddressApiService from "./AddressApiService";
 
 const StationApiService = {
-  AddAsync: async (station) => {
+  AddOrUpdateAsync: async (station) => {
     try {
       console.log("data to send : ", station);
       let dataForSend = {
@@ -11,15 +11,20 @@ const StationApiService = {
         isActive: station.isActive === "1",
         latitude: station.latitude,
         longitude: station.longitude,
+        code: station.code,
       };
       if (station.carPathId) dataForSend.carPathId = station.carPathId;
+      console.log(
+        "ADDRESS : ",
+        AddressApiService.Tracking.TrackingStationAddOrUpdate
+      );
       let resultFromServer = await axios.post(
-        AddressApiService.Tracking.TrackingStationAdd,
+        AddressApiService.Tracking.TrackingStationAddOrUpdate,
         dataForSend
       );
       return resultFromServer.data;
     } catch (error) {
-      console.error("StationApiService->GetsAsync", error);
+      console.error("StationApiService->AddOrUpdateAsync", error);
       return {
         isSuccess: false,
         messages: ["خطای اتصال به سرور"],
@@ -30,6 +35,21 @@ const StationApiService = {
     try {
       let resultFromServer = await axios.post(
         AddressApiService.Tracking.TrackingStationGetTable,
+        {}
+      );
+      return resultFromServer.data;
+    } catch (error) {
+      console.error("StationApiService->GetTableAsync", error);
+      return {
+        isSuccess: false,
+        messages: ["خطای اتصال به سرور"],
+      };
+    }
+  },
+  GetsAsync: async () => {
+    try {
+      let resultFromServer = await axios.post(
+        AddressApiService.Tracking.TrackingStationGets,
         {}
       );
       return resultFromServer.data;

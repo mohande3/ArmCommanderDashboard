@@ -31,12 +31,12 @@ function StationAddOrEditModalCom({
           />
         </Col>
         <Col col="6">
-          <Label htmlFor="description" text="توضیحات : " />
+          <Label htmlFor="code" text="کد ایستگاه : " />
           <InputText
-            id="description"
-            placeHolder="توضیحات"
-            value={station.description}
-            onHandleChangeValue={(val) => onHandleSetValue("description", val)}
+            id="code"
+            placeHolder="کد ایستگاه"
+            value={station.code}
+            onHandleChangeValue={(val) => onHandleSetValue("code", val)}
           />
         </Col>
       </Row>
@@ -62,6 +62,15 @@ function StationAddOrEditModalCom({
       </Row>
       <Row className="mt-3">
         <Col col="6">
+          <Label htmlFor="description" text="توضیحات : " />
+          <InputText
+            id="description"
+            placeHolder="توضیحات"
+            value={station.description}
+            onHandleChangeValue={(val) => onHandleSetValue("description", val)}
+          />
+        </Col>
+        <Col col="6">
           <InputSwitch
             onHandleChangeValue={(val) => onHandleSetValue("isActive", val)}
             id="isActive"
@@ -69,7 +78,6 @@ function StationAddOrEditModalCom({
             value={station.isActive}
           />
         </Col>
-        <Col col="6"></Col>
       </Row>
     </Modal>
   );

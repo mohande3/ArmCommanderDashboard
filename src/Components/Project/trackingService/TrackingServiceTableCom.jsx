@@ -21,7 +21,9 @@ function TrackingServiceTableCom() {
     name: "",
     description: "",
     isActive: "1",
-    code: ""
+    code: "",
+    stationAssignt: [],
+    stationUnAssignt: [],
   });
   const columns = [
     {
@@ -33,8 +35,27 @@ function TrackingServiceTableCom() {
       property: "name",
     },
     {
-      title: "توضیحات",
-      property: "description",
+      title: "ایستگاه ها",
+      property: "stations",
+      className:"w-50",
+      render: (row) => {
+        if (!row["stations"])
+          return (
+            <td>
+              <span className="badge bg-danger">0</span>
+            </td>
+          );
+        return (
+          <td>
+            {row["stations"].map((station, index) => (
+              <span key={index} className="badge bg-info me-1">
+                {station.name}
+              </span>
+
+            ))}
+          </td>
+        );
+      },
     },
     {
       title: "فعال بودن ایستگاه",
@@ -70,6 +91,8 @@ function TrackingServiceTableCom() {
                   description: row["description"],
                   isActive: row["isActive"],
                   code: row["code"],
+                  isActive: row["isActive"] ? "1" : "0",
+                  stationAssignt: GetStationCheced(row["stations"]),
                 });
               }}
             />
@@ -84,6 +107,10 @@ function TrackingServiceTableCom() {
       },
     },
   ];
+    const GetStationCheced = (stationAssignt) => {
+      if (!stationAssignt) return [];
+      return stationAssignt.map((sta) => sta.code);
+    };
   const HandleAddOrUpdate = async () => {
     let resultFromServer = await TrackingServiceApiService.AddOrUpdateAsync(
       service

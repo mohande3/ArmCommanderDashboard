@@ -1,37 +1,57 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import TimeLogApiService from "../../../../services/apis/TimeLogApiService";
 import { Col, Row } from "../../../Basic/containers/Containers";
+import TimeLogSignalRTableCom from "../private/TimeLogSignalRTableCom";
 import TimeLogMonitorCardCom from "./TimeLogMonitorCardCom";
 
 function TimeLogMonitorCom() {
-  const rows = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const counter = useRef();
-  const GetPersonnelImage = () => {
-    console.log("GetPersonnelImage ", counter.current);
-    if (isNaN(counter.current)) counter.current = 0;
-    if (counter.current >= 4) counter.current = 0;
-    counter.current += 1;
-    if (counter.current === 1) return "../../assets/img/avatars/1.png";
-    if (counter.current === 2) return "../../assets/img/avatars/2.png";
-    if (counter.current === 3) return "../../assets/img/avatars/3.png";
-    if (counter.current === 4) return "../../assets/img/avatars/4.png";
+  const [timeLogs, setTimeLogs] = useState(null);
+  const [timeLogNewReceive, setTimeLogNewReceive] = useState(null);
+  const LoadData = async () => {
+    let oApiResultFromServer = await TimeLogApiService.GetTableAsync();
+    console.log(oApiResultFromServer);
+    if (oApiResultFromServer.isSuccess) {
+      setTimeLogs(oApiResultFromServer.result.results);
+    } else {
+      toast.error(oApiResultFromServer.messages[0]);
+    }
   };
   useEffect(() => {
-    counter.current = 0;
-    console.log("CUTERN ", counter.current);
+    LoadData();
   }, []);
+  useEffect(() => {
+    if (!timeLogNewReceive) return;
+    let newData = [timeLogNewReceive, ...timeLogs];
+    console.log('CHANGE')
+    setTimeLogs(newData);
+  }, [timeLogNewReceive]);
   return (
     <>
+      <TimeLogSignalRTableCom
+        onHandleNewTimeLog={(tm) => {
+          setTimeLogNewReceive(tm);
+        }}
+      />
       <Row>
-        {rows.map((row, index) => (
-          <Col col="12 col-sm-6 col-md-3 mb-2">
-            <TimeLogMonitorCardCom
-              key={index}
-              className=""
-              personnelNumber={row}
-              personnelImage={GetPersonnelImage()}
-            />
-          </Col>
-        ))}
+        {timeLogs && (
+          <>
+            {timeLogs.map((row, index) => (
+              <Col col="12 col-sm-6 col-md-3 mb-2">
+                <TimeLogMonitorCardCom
+                  key={index}
+                  className=""
+                  personnelNumber={row["personnelNumber"]}
+                  fullName={row["personnelFullName"]}
+                  typeOfTimeLog={row["typeOfTimeLog"]}
+                  typeOfVerifyTimeLog={row["typeOfVerifyTimeLog"]}
+                  dateTimeOfTimeLog={row["dateTimeOfTimeLog"]}
+                  personnelImage={row["imageBase64Live"]}
+                />
+              </Col>
+            ))}
+          </>
+        )}
       </Row>
     </>
   );

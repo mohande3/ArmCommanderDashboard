@@ -128,8 +128,12 @@ const InputSelecte = ({
   );
 };
 
-const InputListCheckGroup = ({ rows = [], valueSelected = []
-  , onHandleChangeValue, id = "" }) => {
+const InputListCheckGroup = ({
+  rows = [],
+  valueSelected = [],
+  onHandleChangeValue,
+  id = "",
+}) => {
   return (
     <InputListCheckGroupPrivate
       rows={rows}
@@ -214,6 +218,20 @@ const ShowDateFromUnix = ({ unix }) => {
   });
   return <span>{date.convert(persian, persian_fa).format()}</span>;
 };
+const ShowTimeFromUnix = ({ unix, className = "" }) => {
+  if (!unix) {
+    console.warn("UNIX can not be null or empty");
+    return;
+  }
+  let date = new DateObject({
+    date: Number(unix) * 1000,
+  });
+  return (
+    <span className={className}>
+      {date.convert(persian, persian_fa).format("hh:mm")}
+    </span>
+  );
+};
 
 export {
   Label,
@@ -226,4 +244,5 @@ export {
   InputSwitch,
   InputCheckBox,
   ShowDateFromUnix,
+  ShowTimeFromUnix,
 };

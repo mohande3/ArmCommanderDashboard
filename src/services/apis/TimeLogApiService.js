@@ -1,13 +1,16 @@
 import axios from "axios";
+import AuthService from "../AuthService";
 import AddressApiService from "./AddressApiService";
 
 const TimeLogApiService = {
-  GetTableAsync: async () => {
+  GetTableAsync: async (timeLogSearch) => {
     try {
-      console.log(AddressApiService.TimeLog.GetTable);
+      let dataForSend = {};
+      if (timeLogSearch)
+        dataForSend = { ...timeLogSearch };
       let resultFromServer = await axios.post(
         AddressApiService.TimeLog.GetTable,
-        {}
+        dataForSend,AuthService.GetHeaderAuth()
       );
       return resultFromServer.data;
     } catch (error) {

@@ -5,7 +5,7 @@ function TableHeader({ columns = [], type = "" }) {
     <thead className={!type ? "" : "table-" + type}>
       <tr>
         {columns.map((col, index) => (
-          <th key={index}>{col.title}</th>
+          <th key={index} className={col.className}>{col.title}</th>
         ))}
       </tr>
     </thead>

@@ -19,6 +19,7 @@ function StationTableCom() {
   const [stationIdForDelete, setstationIdForDelete] = useState(null);
   const [station, setstation] = useState({
     name: "",
+    code: "",
     description: "",
     isActive: true,
     latitude: 0,
@@ -28,7 +29,7 @@ function StationTableCom() {
   const columns = [
     {
       title: "کد",
-      property: "carStationId",
+      property: "code",
     },
     {
       title: "نام ایستگاه",
@@ -83,6 +84,7 @@ function StationTableCom() {
                   latitude: row["latitude"],
                   longitude: row["longitude"],
                   name: row["name"],
+                  code: row["code"],
                 });
               }}
             />
@@ -98,7 +100,7 @@ function StationTableCom() {
     },
   ];
   const HandleAddOrUpdate = async () => {
-    let resultFromServer = await StationApiService.AddAsync(station);
+    let resultFromServer = await StationApiService.AddOrUpdateAsync(station);
     console.log(resultFromServer);
     if (resultFromServer.isSuccess) {
       toast.success("اضافه کردن ایستگاه به درستی انجام شد .");

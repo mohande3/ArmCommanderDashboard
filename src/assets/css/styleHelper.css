@@ -103,7 +103,10 @@
   padding-right: 1rem !important;
 }
 
-.form-inline label{
+.form-inline label {
   min-width: max-content !important;
   margin-left: 5px;
+}
+.list-group .form-check {
+  margin-right: 1.7rem !important;
 }

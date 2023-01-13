@@ -2,6 +2,8 @@ const baseAddress = process.env.REACT_APP_API_ADDRESS;
 const AddressApiService = {
   TimeLog: {
     GetTable: baseAddress + "Kara2000api/v1/TimeLogApi/GetTable",
+    HubTimeLogAddress: baseAddress + "hubtimelogservice",
+    HubTimeLogAddress_Event: "ReceiveNewTimeLog",
   },
   Device: {
     GetTable: baseAddress + "Kara2000api/v1/DeviceApi/GetsTable",
@@ -12,14 +14,15 @@ const AddressApiService = {
       "Kara2000api/v1/DeviceApi/DeleteBySerialNumber?serialNumber=",
   },
   Tracking: {
-    TrackingStationAdd:
-      baseAddress + "Kara2000api/v1/TrackingApi/TrackingStationAdd",
+    TrackingStationAddOrUpdate:
+      baseAddress + "v1/TrackingApi/TrackingStationAddOrUpdate",
     TrackingStationGetTable:
-      baseAddress + "Kara2000api/v1/TrackingApi/TrackingStationGetTable",
+      baseAddress + "v1/TrackingApi/TrackingStationGetTable",
+    TrackingStationGets: baseAddress + "v1/TrackingApi/TrackingStationGets",
     TrackingServiceGetTable:
-      baseAddress + "Kara2000api/v1/TrackingApi/ServiceGetTable",
+      baseAddress + "v1/TrackingApi/TrackingServiceGetTable",
     TrackingServieAdd:
-      baseAddress + "Kara2000api/v1/TrackingApi/ServiceAddOrUpdate",
+      baseAddress + "v1/TrackingApi/TrackingServiceAddOrUpdate",
   },
   Personnel: {
     GetTable: baseAddress + "Kara2000api/v1/PersonnelApi/GetTable",

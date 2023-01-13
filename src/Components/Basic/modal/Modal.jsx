@@ -1,13 +1,20 @@
 import React from "react";
 
-function Modal({ id = "", title, children, modalFooter, onHandleClickConfirm }) {
+function Modal({
+  id = "",
+  title,
+  children,
+  modalFooter,
+  onHandleClickConfirm,
+  size=''
+}) {
   const HandleClickConfirm = () => {
     if (!onHandleClickConfirm) {
       console.warn(`onHandleClickConfirm not exist in ${id}`);
       return;
     }
     onHandleClickConfirm();
-  }
+  };
   const GetFooter = () => {
     if (modalFooter) return <div className="modal-footer">{modalFooter}</div>;
     return (
@@ -41,7 +48,7 @@ function Modal({ id = "", title, children, modalFooter, onHandleClickConfirm }) 
         role="dialog"
         data-bs-backdrop="static"
       >
-        <div className="modal-dialog">
+        <div className={`modal-dialog ${size?"modal-"+size:""}`}>
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel1">
