@@ -7,11 +7,14 @@ const TrackingTripApiService = {
     try {
       console.log("data to send : ", trip);
       let dataForSend = {
+        name: trip.name,
+        dateTimeOfStart: trip.dateTimeOfStart.toString(),
+        code: trip.code,
+        serviceCode: trip.serviceCode,
       };
       let resultFromServer = await axios.post(
         AddressApiService.Tracking.TrackingTripAddOrUpdate,
-        dataForSend,
-        AuthService.GetHeaderAuth()
+        dataForSend
       );
       return resultFromServer.data;
     } catch (error) {

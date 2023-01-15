@@ -13,24 +13,41 @@ import { useNavigate } from "react-router-dom";
 import Modal, { ModalDelete, ModalShowBtn } from "../../../Basic/modal/Modal";
 import TrackingTripApiService from "../../../../services/apis/TrackingTripApiService";
 import { Col, Row } from "../../../Basic/containers/Containers";
+import TripAddOrUpdateModalCom from "./private/TripAddOrUpdateModalCom";
 function TripTableCom() {
   const [trips, settrips] = useState(null);
   const [tripIdForDelete, settripIdForDelete] = useState(null);
   const [trip, settrip] = useState({
-
+    name: "",
+    dateTimeOfStart: "",
+    code: "",
+    serviceCode: "",
   });
   const columns = [
     {
       title: "کد",
-      property: "tripId",
+      property: "code",
     },
     {
-      title: "نام گیت",
+      title: "نام سفر",
       property: "name",
     },
     {
-      title: "سریال",
-      property: "serialNumber",
+      title: "سرویس",
+      property: "serviceCode",
+      render: (row) => {
+        if (row["serviceCode"])
+          return (
+            <td>
+              <span className="badge bg-label-info">{row["serviceName"]}</span>
+            </td>
+          );
+        return (
+          <td>
+            <span className="badge badge-label-danger">بدون سرویس</span>
+          </td>
+        );
+      },
     },
     {
       title: "",
@@ -119,7 +136,7 @@ function TripTableCom() {
         id="modalDeletetrip"
         onHandleClickConfirm={HandleConfirmDelete}
       />
-      <tripAddOrEditModalCom
+      <TripAddOrUpdateModalCom
         trip={trip}
         onHandleSetValue={HandleSetValue}
         onHandleClickConfirm={HandleAddOrUpdate}
@@ -132,7 +149,7 @@ function TripTableCom() {
               <ModalShowBtn
                 className="btn-sm btn-primary"
                 id="btnShowModal"
-                modalId="ModalAddEdittrip"
+                modalId="ModalAddEditTrip"
                 content="اضافه کردن سفر جدید"
               />
             </div>
