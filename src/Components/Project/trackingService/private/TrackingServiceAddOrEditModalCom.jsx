@@ -10,6 +10,7 @@ import {
 import Modal from "../../../Basic/modal/Modal";
 import { DividerPrimary } from "../../../Basic/divider/Divider";
 import StationListGroupCom from "../../station/StationListGroupCom";
+import DeviceListGroupCom from "../../device/DeviceListGroupCom";
 function TrackingServiceAddOrEditModalCom({
   service,
   onHandleSetValue,
@@ -48,6 +49,19 @@ function TrackingServiceAddOrEditModalCom({
               aria-selected="false"
             >
               <i className="tf-icons bx bx-user"></i> ایستگاه های سرویس
+            </button>
+          </li>
+          <li className="nav-item">
+            <button
+              type="button"
+              className="nav-link"
+              role="tab"
+              data-bs-toggle="tab"
+              data-bs-target="#trackingServiceStation"
+              aria-controls="trackingServiceStation"
+              aria-selected="false"
+            >
+              <i className="tf-icons bx bx-user"></i> دستگاه های سرویس
             </button>
           </li>
         </ul>
@@ -115,43 +129,96 @@ function TrackingServiceAddOrEditModalCom({
                 <StationListGroupCom
                   stationCheckeds={service.stationAssignt}
                   onHandleChangeValue={(code, isSelected) => {
-                     if (!onHandleSetValue) {
-                       console.warn(
-                         `onHandleSetValue is not exist in PersonnelAssignToDeviceOrGroupCom`
-                       );
-                       return;
-                     }
-                     if (isSelected == "1") {
-                       //-- ADD
-                       let newData = service.stationAssignt;
-                       if (newData === undefined || newData === null)
-                         newData = [];
-                       newData = newData.filter((str) => str !== code);
-                       newData.push(code);
-                       onHandleSetValue("stationAssignt", newData);
+                    if (!onHandleSetValue) {
+                      console.warn(
+                        `onHandleSetValue is not exist in PersonnelAssignToDeviceOrGroupCom`
+                      );
+                      return;
+                    }
+                    if (isSelected == "1") {
+                      //-- ADD
+                      let newData = service.stationAssignt;
+                      if (newData === undefined || newData === null)
+                        newData = [];
+                      newData = newData.filter((str) => str !== code);
+                      newData.push(code);
+                      onHandleSetValue("stationAssignt", newData);
 
-                       //-- REMOVE
-                       newData = service.stationUnAssignt;
-                       if (newData === undefined || newData === null)
-                         newData = [];
-                       newData = newData.filter((str) => str !== code);
-                       onHandleSetValue("stationUnAssignt", newData);
-                     } else {
-                       //-- ADD
-                       let newData = service.stationAssignt;
-                       if (newData === undefined || newData === null)
-                         newData = [];
-                       newData = newData.filter((str) => str !== code);
-                       onHandleSetValue("stationAssignt", newData);
+                      //-- REMOVE
+                      newData = service.stationUnAssignt;
+                      if (newData === undefined || newData === null)
+                        newData = [];
+                      newData = newData.filter((str) => str !== code);
+                      onHandleSetValue("stationUnAssignt", newData);
+                    } else {
+                      //-- ADD
+                      let newData = service.stationAssignt;
+                      if (newData === undefined || newData === null)
+                        newData = [];
+                      newData = newData.filter((str) => str !== code);
+                      onHandleSetValue("stationAssignt", newData);
 
-                       //-- REMOVE
-                       newData = service.stationUnAssignt;
-                       if (newData === undefined || newData === null)
-                         newData = [];
-                       newData = newData.filter((str) => str !== code);
-                       newData.push(code);
-                       onHandleSetValue("stationUnAssignt", newData);
-                     }
+                      //-- REMOVE
+                      newData = service.stationUnAssignt;
+                      if (newData === undefined || newData === null)
+                        newData = [];
+                      newData = newData.filter((str) => str !== code);
+                      newData.push(code);
+                      onHandleSetValue("stationUnAssignt", newData);
+                    }
+                  }}
+                />
+              </Col>
+            </Row>
+          </div>
+          <div
+            className="tab-pane fade"
+            id="trackingServiceStation"
+            role="tabpanel"
+          >
+            {console.log("DEVICE ASSIGN", service.deviceAssignt)}
+            <Row>
+              <Col>
+                <DeviceListGroupCom
+                  deviceCheckeds={service.deviceAssignt}
+                  onHandleChangeValue={(serialNumber, isSelected) => {
+                    if (!onHandleSetValue) {
+                      console.warn(
+                        `onHandleSetValue is not exist in PersonnelAssignToDeviceOrGroupCom`
+                      );
+                      return;
+                    }
+                    if (isSelected == "1") {
+                      //-- ADD
+                      let newData = service.deviceAssignt;
+                      if (newData === undefined || newData === null)
+                        newData = [];
+                      newData = newData.filter((str) => str !== serialNumber);
+                      newData.push(serialNumber);
+                      onHandleSetValue("deviceAssignt", newData);
+
+                      //-- REMOVE
+                      newData = service.deviceUnAssignt;
+                      if (newData === undefined || newData === null)
+                        newData = [];
+                      newData = newData.filter((str) => str !== serialNumber);
+                      onHandleSetValue("deviceUnAssignt", newData);
+                    } else {
+                      //-- ADD
+                      let newData = service.deviceAssignt;
+                      if (newData === undefined || newData === null)
+                        newData = [];
+                      newData = newData.filter((str) => str !== serialNumber);
+                      onHandleSetValue("deviceAssignt", newData);
+
+                      //-- REMOVE
+                      newData = service.deviceUnAssignt;
+                      if (newData === undefined || newData === null)
+                        newData = [];
+                      newData = newData.filter((str) => str !== serialNumber);
+                      newData.push(serialNumber);
+                      onHandleSetValue("deviceUnAssignt", newData);
+                    }
                   }}
                 />
               </Col>

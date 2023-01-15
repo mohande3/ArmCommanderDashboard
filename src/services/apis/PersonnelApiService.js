@@ -27,7 +27,8 @@ const PersonnelApiService = {
         AddressApiService.Personnel.GetByPersonnelNumber
       );
       let resultFromServer = await axios.get(
-        AddressApiService.Personnel.GetByPersonnelNumber + personnelNumber
+        AddressApiService.Personnel.GetByPersonnelNumber + personnelNumber,
+        AuthService.GetHeaderAuth()
       );
       return resultFromServer.data;
     } catch (error) {
@@ -88,7 +89,10 @@ const PersonnelApiService = {
       let resultFromServer = await axios.post(
         AddressApiService.Personnel.AddOrUpdate,
         bodyFormData,
-        { "Content-Type": "multipart/form-data" }
+        {
+          "Content-Type": "multipart/form-data",
+          ...AuthService.GetHeaderAuth(),
+        }
       );
       return resultFromServer.data;
     } catch (error) {
@@ -103,7 +107,8 @@ const PersonnelApiService = {
     try {
       console.log(AddressApiService.Personnel.Delete + personnelId);
       let resultFromServer = await axios.post(
-        AddressApiService.Personnel.Delete + personnelId
+        AddressApiService.Personnel.Delete + personnelId,
+        AuthService.GetHeaderAuth()
       );
       return resultFromServer.data;
     } catch (error) {

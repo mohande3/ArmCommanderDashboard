@@ -12,6 +12,8 @@ const TrackingServiceApiService = {
         code: service.code,
         stationAssignt: service.stationAssignt,
         stationUnAssignt: service.stationUnAssignt,
+        DeviceSerialNumbersAssign: service.deviceAssignt,
+        DeviceSerialNumbersUnAssign: service.deviceUnAssignt,
       };
       let resultFromServer = await axios.post(
         AddressApiService.Tracking.TrackingServieAdd,

@@ -14,6 +14,7 @@ import Login from "../Pages/auth/Login";
 import PureLayout from "../Pages/Layout/PureLayout";
 import NotFound from "../Pages/errors/NotFound";
 import TrackingCarTable from "../Pages/trackingCar/TrackingCarTable";
+import TripTable from "../Pages/tracking/trip/TripTable";
 
 function FullRoute() {
   return (
@@ -35,6 +36,7 @@ function FullRoute() {
           <Route path="/tracking/stations" element={<StationTable />} />
           <Route path="/tracking/services" element={<TrackingServiceTable />} />
           <Route path="/tracking/trackingCars" element={<TrackingCarTable />} />
+          <Route path="/tracking/trips" element={<TripTable />} />
         </Route>
         <Route path="/login" element={<PureLayout />}>
           <Route path="/login" element={<Login />} />

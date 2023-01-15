@@ -14,6 +14,7 @@ import Modal, { ModalDelete, ModalShowBtn } from "../../Basic/modal/Modal";
 import TrackingServiceApiService from "../../../services/apis/TrackingServiceApiService";
 import { Col, Row } from "../../Basic/containers/Containers";
 import TrackingServiceAddOrEditModalCom from "./private/TrackingServiceAddOrEditModalCom";
+import ToastService from "../../../services/ToastService";
 function TrackingServiceTableCom() {
   const [services, setservices] = useState(null);
   const [serviceIdForDelete, setserviceIdForDelete] = useState(null);
@@ -24,7 +25,10 @@ function TrackingServiceTableCom() {
     code: "",
     stationAssignt: [],
     stationUnAssignt: [],
+    deviceAssignt: [],
+    deviceUnAssign: [],
   });
+  const [personnelsInStation, setPersonnelsInStation] = useState([])
   const columns = [
     {
       title: "کد",
@@ -37,7 +41,7 @@ function TrackingServiceTableCom() {
     {
       title: "ایستگاه ها",
       property: "stations",
-      className:"w-50",
+      className: "w-25",
       render: (row) => {
         if (!row["stations"])
           return (
@@ -48,10 +52,45 @@ function TrackingServiceTableCom() {
         return (
           <td>
             {row["stations"].map((station, index) => (
-              <span key={index} className="badge bg-info me-1">
+              <ModalShowBtn
+                key={index}
+                className="btn-sm btn-primary me-1 mb-1"
+                modalId="SHOWPERSONNELSINTHISSTATION"
+                content={
+                  <>
+                    <span>{station.name}</span>
+                    <span class="badge bg-label-danger rounded-pill me-1">
+                      {station.personnels.length}
+                    </span>
+                  </>
+                }
+                onHandleClick={(e) => {
+                  setPersonnelsInStation(station.personnels);
+                }}
+              />
+            ))}
+          </td>
+        );
+      },
+    },
+    ,
+    {
+      title: "دستگاه ها",
+      property: "devices",
+      className: "w-25",
+      render: (row) => {
+        if (!row["devices"])
+          return (
+            <td>
+              <span className="badge bg-danger">0</span>
+            </td>
+          );
+        return (
+          <td>
+            {row["devices"].map((station, index) => (
+              <span key={index} className="badge bg-label-info me-1">
                 {station.name}
               </span>
-
             ))}
           </td>
         );
@@ -84,7 +123,7 @@ function TrackingServiceTableCom() {
             <ModalShowBtn
               className="btn-sm btn-warning"
               modalId="ModalAddEditService"
-              text="EDI"
+              content="EDI"
               onHandleClick={(e) => {
                 setservice({
                   name: row["name"],
@@ -93,12 +132,13 @@ function TrackingServiceTableCom() {
                   code: row["code"],
                   isActive: row["isActive"] ? "1" : "0",
                   stationAssignt: GetStationCheced(row["stations"]),
+                  deviceAssignt: GetDeviceSelected(row["devices"]),
                 });
               }}
             />
             <ModalShowBtn
               className="btn-sm btn-danger me-2"
-              text="DEL"
+              content="DEL"
               modalId="modalDeleteService"
               onHandleClick={(e) => setserviceIdForDelete(row["serialNumber"])}
             />
@@ -107,10 +147,24 @@ function TrackingServiceTableCom() {
       },
     },
   ];
-    const GetStationCheced = (stationAssignt) => {
-      if (!stationAssignt) return [];
-      return stationAssignt.map((sta) => sta.code);
-    };
+  const columnsPersonnelInStation = [
+    {
+      title: "کد پرسنلی",
+      property: "personnelNumber",
+    },
+    {
+      title: "نام ونام خانوادگی",
+      property: "fullName",
+    },
+  ];
+  const GetStationCheced = (stationAssignt) => {
+    if (!stationAssignt) return [];
+    return stationAssignt.map((sta) => sta.code);
+  };
+  const GetDeviceSelected = (data) => {
+    if (!data) return [];
+    return data.map((sta) => sta.serialNumber);
+  };
   const HandleAddOrUpdate = async () => {
     let resultFromServer = await TrackingServiceApiService.AddOrUpdateAsync(
       service
@@ -125,7 +179,7 @@ function TrackingServiceTableCom() {
   };
   const HandleConfirmDelete = async () => {
     if (!serviceIdForDelete) {
-      toast.warn("لطفا یک دستگاه را برای حذف انتخاب کنید . ");
+      ToastService.Warning("لطفا یک دستگاه را برای حذف انتخاب کنید . ");
       return;
     }
     let resultFromServer = await TrackingServiceApiService.یثمث(
@@ -163,6 +217,10 @@ function TrackingServiceTableCom() {
         onHandleClickConfirm={HandleConfirmDelete}
         text="آیا از حذف این سرویس مطمئن هستید ؟ "
       />
+      <Modal id="SHOWPERSONNELSINTHISSTATION">
+        <Table rows={personnelsInStation} columns={columnsPersonnelInStation}
+        type="primary"/>
+      </Modal>
       <TrackingServiceAddOrEditModalCom
         service={service}
         onHandleSetValue={HandleSetValue}
@@ -177,7 +235,7 @@ function TrackingServiceTableCom() {
                 className="btn-sm btn-primary"
                 id="btnShowModal"
                 modalId="ModalAddEditService"
-                text="اضافه کردن سرویس جدید"
+                content="اضافه کردن سرویس جدید"
               />
             </div>
           </>

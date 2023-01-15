@@ -142,7 +142,7 @@ function PersonnelTableCom({isShowSearchSection=true}) {
               EDIT
             </button>
             <ModalShowBtn
-              text="DELT"
+              content="DELT"
               modalId="modalDelete"
               className="btn-sm btn-danger me-2"
               onHandleClick={(e) => {
@@ -212,7 +212,7 @@ function PersonnelTableCom({isShowSearchSection=true}) {
             <Divider />
           </>
         )}
-        <Table columns={columns} rows={personnels} type={"primary-2"} />
+        <Table columns={columns} rows={personnels} type={"primary-2"} className="personnelTableFullSize" />
       </Card>
     </>
   );

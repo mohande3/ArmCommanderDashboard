@@ -121,6 +121,11 @@ function SidebarCom() {
                   <div data-i18n="Without menu">سرویس ها</div>
                 </Link>
               </li>
+              <li className="menu-item">
+                <Link to="/tracking/trips" className="menu-link">
+                  <div data-i18n="Without menu">سفرها</div>
+                </Link>
+              </li>
             </ul>
           </li>
         </ul>

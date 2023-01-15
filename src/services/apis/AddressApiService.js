@@ -28,6 +28,10 @@ const AddressApiService = {
       baseAddress + "v1/TrackingApi/TrackingServiceAddOrUpdate",
     // ============= CAR TRACKING API ADDRESS
     TrackingCarGetTable: baseAddress + "v1/TrackingApi/TrackingCarGetTable",
+    // =========== Trip Service API Address
+    TrackingTripGetTable: baseAddress + "v1/TrackingApi/TrackingTripGetTable",
+    TrackingTripAddOrUpdate:
+      baseAddress + "v1/TrackingApi/TrackingTripAddOrUpdate",
   },
   Personnel: {
     GetTable: baseAddress + "Kara2000api/v1/PersonnelApi/GetTable",

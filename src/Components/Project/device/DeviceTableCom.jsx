@@ -77,7 +77,7 @@ function DeviceTableCom() {
             <ModalShowBtn
               className="btn-sm btn-warning"
               modalId="ModalAddEditDevice"
-              text="EDI"
+              content="EDI"
               onHandleClick={(e) => {
                 setDevice({
                   serialNumber: row["serialNumber"],
@@ -97,7 +97,7 @@ function DeviceTableCom() {
             />
             <ModalShowBtn
               className="btn-sm btn-danger me-2"
-              text="DEL"
+              content="DEL"
               modalId="modalDeleteDevice"
               onHandleClick={(e) => setDeviceIdForDelete(row["serialNumber"])}
             />
@@ -167,7 +167,7 @@ function DeviceTableCom() {
                 className="btn-sm btn-primary"
                 id="btnShowModal"
                 modalId="ModalAddEditDevice"
-                text="اضافه کردن دستگاه جدید"
+                content="اضافه کردن دستگاه جدید"
               />
             </div>
           </>

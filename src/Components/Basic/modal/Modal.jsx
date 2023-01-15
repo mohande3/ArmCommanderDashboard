@@ -109,7 +109,7 @@ const ModalDelete = ({ id = "", text = "", onHandleClickConfirm }) => {
 const ModalShowBtn = ({
   id = "",
   modalId = "",
-  text = "",
+  content,
   className = "",
   onHandleClick,
 }) => {
@@ -129,7 +129,7 @@ const ModalShowBtn = ({
       data-bs-target={"#" + modalId}
       onClick={HandleClick}
     >
-      {text}
+      {content}
     </button>
   );
 };
