@@ -14,9 +14,10 @@ import Modal, { ModalDelete, ModalShowBtn } from "../../Basic/modal/Modal";
 import StationApiService from "../../../services/apis/StationApiService";
 import { Col, Row } from "../../Basic/containers/Containers";
 import StationAddOrEditModalCom from "./private/StationAddOrEditModalCom";
+import ToastService from "../../../services/ToastService"
 function StationTableCom() {
   const [stations, setstations] = useState(null);
-  const [stationIdForDelete, setstationIdForDelete] = useState(null);
+  const [stationIdForDelete, setStationIdForDelete] = useState(null);
   const [station, setstation] = useState({
     name: "",
     code: "",
@@ -75,7 +76,7 @@ function StationTableCom() {
             <ModalShowBtn
               className="btn-sm btn-warning"
               modalId="ModalAddEditstation"
-              text="EDI"
+              content="EDI"
               onHandleClick={(e) => {
                 setstation({
                   carStationId: row["carStationId"],
@@ -90,9 +91,9 @@ function StationTableCom() {
             />
             <ModalShowBtn
               className="btn-sm btn-danger me-2"
-              text="DEL"
+              content="DEL"
               modalId="modalDeletestation"
-              onHandleClick={(e) => setstationIdForDelete(row["serialNumber"])}
+              onHandleClick={(e) => setStationIdForDelete(row["code"])}
             />
           </td>
         );
@@ -110,20 +111,21 @@ function StationTableCom() {
     }
   };
   const HandleConfirmDelete = async () => {
-    // if (!stationIdForDelete) {
-    //   toast.warn("لطفا یک ایستگاه را برای حذف انتخاب کنید . ");
-    //   return;
-    // }
-    // let resultFromServer = await stationApiService.DeleteBySerialNumber(
-    //   stationIdForDelete
-    // );
-    // if (resultFromServer.isSuccess) {
-    //   toast.success("ایستگاه به درستی حذف شد . ");
-    //   await LoadData();
-    // } else {
-    //   toast.error(resultFromServer.messages[0]);
-    //   console.error(resultFromServer);
-    // }
+    console.log(stationIdForDelete)
+    if (!stationIdForDelete) {
+      ToastService.Warning("لطفا یک ایستگاه را برای حذف انتخاب کنید . ");
+      return;
+    }
+    let resultFromServer = await StationApiService.DeleteByCode(
+      stationIdForDelete
+    );
+    if (resultFromServer.isSuccess) {
+      toast.success("ایستگاه به درستی حذف شد . ");
+      await LoadData();
+    } else {
+      toast.error(resultFromServer.messages[0]);
+      console.error(resultFromServer);
+    }
   };
   const HandleSetValue = (property, value) => {
     let tempstation = station;
@@ -163,7 +165,7 @@ function StationTableCom() {
                 className="btn-sm btn-primary"
                 id="btnShowModal"
                 modalId="ModalAddEditstation"
-                text="اضافه کردن ایستگاه جدید"
+                content="اضافه کردن ایستگاه جدید"
               />
             </div>
           </>

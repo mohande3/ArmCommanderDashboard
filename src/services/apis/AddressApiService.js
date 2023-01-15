@@ -20,6 +20,8 @@ const AddressApiService = {
     TrackingStationGetTable:
       baseAddress + "v1/TrackingApi/TrackingStationGetTable",
     TrackingStationGets: baseAddress + "v1/TrackingApi/TrackingStationGets",
+    TrackingStationDeleteByCode:
+      baseAddress + "v1/TrackingApi/TrackingStationDeleteByCode?code=",
     // =========== CAR SERVICE API ADDRESS
     TrackingServiceGetTable:
       baseAddress + "v1/TrackingApi/TrackingServiceGetTable",

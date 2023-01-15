@@ -1,4 +1,5 @@
 import axios from "axios";
+import AuthService from "../AuthService";
 import AddressApiService from "./AddressApiService";
 
 const StationApiService = {
@@ -55,6 +56,20 @@ const StationApiService = {
       return resultFromServer.data;
     } catch (error) {
       console.error("StationApiService->GetTableAsync", error);
+      return {
+        isSuccess: false,
+        messages: ["خطای اتصال به سرور"],
+      };
+    }
+  },
+  DeleteByCode: async (code) => {
+    try {
+      let resultFromServer = await axios.post(
+        AddressApiService.Tracking.TrackingStationDeleteByCode + code, {},AuthService.GetHeaderAuth()
+      );
+      return resultFromServer.data;
+    } catch (error) {
+      console.error("StationApiService->DeleteByCode", error);
       return {
         isSuccess: false,
         messages: ["خطای اتصال به سرور"],
