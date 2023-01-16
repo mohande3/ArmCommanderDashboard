@@ -33,16 +33,7 @@ function NavbarCom() {
           </div>
           <ul className="navbar-nav flex-row align-items-center me-auto">
             <li className="nav-item lh-1 ms-3">
-              <a
-                className="github-button"
-                href="https://github.com/themeselection/sneat-html-admin-template-free"
-                data-icon="octicon-star"
-                data-size="large"
-                data-show-count="true"
-                aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-              >
-                Star
-              </a>
+              {/* <strong className="text-primary">مهندس خادمی</strong> */}
             </li>
             <li className="nav-item navbar-dropdown dropdown-user dropdown">
               <a
@@ -61,7 +52,7 @@ function NavbarCom() {
                 <li>
                   <a className="dropdown-item" href="#">
                     <div className="d-flex">
-                      <div className="flex-shrink-0 me-3">
+                      <div className="flex-shrink-0 ms-3">
                         <div className="avatar avatar-online">
                           <img
                             src="../assets/img/avatars/1.png"
@@ -70,8 +61,12 @@ function NavbarCom() {
                         </div>
                       </div>
                       <div className="flex-grow-1">
-                        <span className="fw-semibold d-block">John Doe</span>
-                        <small className="text-muted">Admin</small>
+                        <span className="fw-semibold d-block">
+                          محمد تقی خادمی
+                        </span>
+                        <small className="text-muted d-block text-center">
+                          Admin
+                        </small>
                       </div>
                     </div>
                   </a>
@@ -80,41 +75,41 @@ function NavbarCom() {
                   <div className="dropdown-divider"></div>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    <i className="bx bx-user me-2"></i>
-                    <span className="align-middle">My Profile</span>
+                  <a className="dropdown-item text-end" href="#">
+                    <i className="bx bx-user ms-2"></i>
+                    <span className="align-middle">پروفایل</span>
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    <i className="bx bx-cog me-2"></i>
-                    <span className="align-middle">Settings</span>
+                  <a className="dropdown-item text-end" href="#">
+                    <i className="bx bx-cog ms-2"></i>
+                    <span className="align-middle">تنظیمات</span>
                   </a>
                 </li>
-                <li>
-                  <a className="dropdown-item" href="#">
+                {/* <li>
+                  <a className="dropdown-item text-end" href="#">
                     <span className="d-flex align-items-center align-middle">
-                      <i className="flex-shrink-0 bx bx-credit-card me-2"></i>
-                      <span className="flex-grow-1 align-middle">Billing</span>
+                      <i className="flex-shrink-0 bx bx-credit-card ms-2"></i>
+                      <span className="ms-1">Billing</span>
                       <span className="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">
                         4
                       </span>
                     </span>
                   </a>
-                </li>
+                </li> */}
                 <li>
-                  <div className="dropdown-divider"></div>
+                  <div className="dropdown-divider text-end"></div>
                 </li>
                 <li>
                   <span
-                    className="dropdown-item"
+                    className="dropdown-item text-end"
                     onClick={(e) => {
                       AuthService.LogOut();
                       navigate("/login");
                     }}
                   >
-                    <i className="bx bx-power-off me-2"></i>
-                    <span className="align-middle">Log Out</span>
+                    <i className="bx bx-power-off ms-2"></i>
+                    <span className="align-middle">خروج</span>
                   </span>
                 </li>
               </ul>

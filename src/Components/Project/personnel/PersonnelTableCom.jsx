@@ -19,7 +19,6 @@ function PersonnelTableCom({isShowSearchSection=true}) {
       title: "کد",
       property: "id",
       render: (row) => {
-        console.log(row["personnelImage"]);
         return (
           <td>
             <span className="ms-2">{row["id"]}</span>
@@ -146,7 +145,6 @@ function PersonnelTableCom({isShowSearchSection=true}) {
               modalId="modalDelete"
               className="btn-sm btn-danger me-2"
               onHandleClick={(e) => {
-                console.log(row["id"]);
                 setPersonnelIdForDelete(row["id"]);
               }}
             />
@@ -156,16 +154,13 @@ function PersonnelTableCom({isShowSearchSection=true}) {
     },
   ];
   const ConfirmDelete = async () => {
-    console.log(personnelIdForDelete);
     if (personnelIdForDelete === undefined || personnelIdForDelete === null) {
       toast.warn("لطفا یک شخص را برای حذف انتخاب کنید . ");
       return;
     }
-    console.log(personnelIdForDelete);
     let resultFromServer = await PersonnelApiService.DeleteByIdAsync(
       personnelIdForDelete
     );
-    console.log(resultFromServer);
     if (resultFromServer.isSuccess) {
       toast.success("حذف شخص به درستی انجام شد . ");
       await LoadData();

@@ -46,7 +46,7 @@ function UserTableCom() {
             <ModalShowBtn
               className="btn-sm btn-warning"
               modalId="ModalAddEdituser"
-              text="EDI"
+              content="EDI"
               onHandleClick={(e) => {
                 setuser({
                   userName: row["userName"],
@@ -59,7 +59,7 @@ function UserTableCom() {
             />
             <ModalShowBtn
               className="btn-sm btn-danger me-2"
-              text="DEL"
+              content="DEL"
               modalId="modalDeleteuser"
               onHandleClick={(e) => setuserIdForDelete(row["userName"])}
             />
@@ -131,12 +131,12 @@ function UserTableCom() {
                 className="btn-sm btn-primary"
                 id="btnShowModal"
                 modalId="ModalAddEditUser"
-                text="اضافه کردن کاربر جدید"
+                content="اضافه کردن کاربر جدید"
               />
               <ModalShowBtn
                 className="btn-sm btn-warning me-2"
                 modalId="ModalAddUserFromPersonnel"
-                text="اضافه کردن کاربر از پرسنل"
+                content="اضافه کردن کاربر از پرسنل"
               />
             </div>
           </>
