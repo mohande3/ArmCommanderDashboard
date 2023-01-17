@@ -111,7 +111,95 @@
   margin-right: 1.7rem !important;
 }
 
-.personnelTableFullSize{
+.personnelTableFullSize {
   min-width: 1200px;
   width: auto !important;
+}
+
+.card.info-box {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(0, 0, 0, 0.05);
+
+}
+.card.info-box .card-body {
+  padding: 0px !important;
+  display: flex;
+  flex-direction: row;
+}
+.card.info-box .card-body .info-box-content {
+  text-align: center !important;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.card.info-box .info-box-icon {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  color: white;
+  -ms-flex-align: center;
+  align-items: center;
+  /* display: -ms-flexbox; */
+  display: flex;
+  font-size: 2rem;
+  /* -ms-flex-pack: center; */
+  justify-content: center;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  padding: 2rem;
+}
+
+
+
+.card.progress-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-height: 120px;
+  
+}
+.card.progress-box .card-body {
+  padding-right: 10px !important;
+  /* background-color: rgba(0, 0, 0, 0.08); */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.card.progress-box .info-box-content {
+  text-align: center !important;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.card.progress-box .info-box-content .info-box-text{
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.card.progress-box .info-box-content .info-box-number{
+  font-weight: bold;
+}
+
+.card.progress-box .info-box-icon {
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  color: white;
+  -ms-flex-align: center;
+  align-items: center;
+  /* display: -ms-flexbox; */
+  display: flex;
+  font-size: 2rem;
+  /* -ms-flex-pack: center; */
+  justify-content: center;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  padding: 2rem;
 }

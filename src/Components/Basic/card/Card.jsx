@@ -16,7 +16,7 @@ function Card({
         )}
         <div className="card-body">
           {titleElement === undefined ? (
-            <h5 className="card-title">{title}</h5>
+            title && <h5 className="card-title">{title}</h5>
           ) : (
             <div className="card-header-2">{titleElement}</div>
           )}

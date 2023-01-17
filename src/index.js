@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "../src/assets/persianBaseStyle/style.css";
 import "../src/assets/css/styleHelper.css";
+import "../src/assets/css/fontawsome/css/all.min.css";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
