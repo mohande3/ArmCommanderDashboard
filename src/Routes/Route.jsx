@@ -15,6 +15,7 @@ import PureLayout from "../Pages/Layout/PureLayout";
 import NotFound from "../Pages/errors/NotFound";
 import TrackingCarTable from "../Pages/trackingCar/TrackingCarTable";
 import TripTable from "../Pages/tracking/trip/TripTable";
+import FingerprintTable from "../Pages/fingerprint/FingerprintTable";
 
 function FullRoute() {
   return (
@@ -30,6 +31,7 @@ function FullRoute() {
             path="/personnel/edit/:personnelNumber"
             element={<PersonnelAddOrEdit />}
           />
+          <Route path="/fingerprints" element={<FingerprintTable />} />
           <Route path="/timelogs" element={<TimeLogTable />} />
           <Route path="/timelogs/monitoring" element={<TimeLogMonitor />} />
           <Route path="/devices" element={<DeviceTable />} />

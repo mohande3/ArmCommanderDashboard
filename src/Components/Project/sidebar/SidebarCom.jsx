@@ -62,6 +62,18 @@ function SidebarCom() {
                   <div data-i18n="Without menu">اضافه کردن پرسنل</div>
                 </Link>
               </li>
+              <li className="menu-item">
+                <Link to="/personnel/groups" className="menu-link">
+                  <div data-i18n="Without menu">گروه های کاربری</div>
+                </Link>
+              </li>
+              <li className="menu-item">
+                <Link to="/personnel/assign" className="menu-link">
+                  <div data-i18n="Without menu">
+                    اختصاص پرسنل به دستگاه و گروه کاربری
+                  </div>
+                </Link>
+              </li>
             </ul>
           </li>
           <li className="menu-item">
@@ -96,6 +108,29 @@ function SidebarCom() {
               <li className="menu-item">
                 <Link to="/gates" className="menu-link">
                   <div data-i18n="Without menu">گیت ها</div>
+                </Link>
+              </li>
+              <li className="menu-item">
+                <Link to="/device/groups" className="menu-link">
+                  <div data-i18n="Without menu">گروه دستگاه ها</div>
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li className="menu-item">
+            <a href="#" className="menu-link menu-toggle">
+              <i className="menu-icon tf-icons bx bx-box"></i>
+              <div data-i18n="User interface">مدیریت داده ها</div>
+            </a>
+            <ul className="menu-sub">
+              <li className="menu-item">
+                <Link to="/fingerprints" className="menu-link">
+                  <div data-i18n="Without menu">تمپلیت اثرانگشت ها</div>
+                </Link>
+              </li>
+              <li className="menu-item">
+                <Link to="/faces" className="menu-link">
+                  <div data-i18n="Without menu">تمپلیت چهره ها</div>
                 </Link>
               </li>
             </ul>
