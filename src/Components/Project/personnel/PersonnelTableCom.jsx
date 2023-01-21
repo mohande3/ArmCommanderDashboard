@@ -9,150 +9,21 @@ import { useNavigate } from "react-router-dom";
 import Modal, { ModalDelete, ModalShowBtn } from "../../Basic/modal/Modal";
 import AuthService from "../../../services/AuthService";
 import PersonnelSearchTableCom from "./private/PersonnelSearchTableCom";
-import Divider, { DividerInfo} from "../../Basic/divider/Divider"
-function PersonnelTableCom({isShowSearchSection=true}) {
+import Divider, { DividerInfo } from "../../Basic/divider/Divider";
+function PersonnelTableCom({
+  isShowSearchSection = true,
+  isShowFullDara = true,
+  classNameTable = "personnelTableFullSize",
+  Header = "مدیریت پرسنل",
+  isCheckable = false,
+  isCheckAll = false,
+  personnelNumbersSelected = [],
+  onHandleCheckedOne,
+}) {
   const [personnels, setPersonnels] = useState(null);
   const [personnelIdForDelete, setPersonnelIdForDelete] = useState(undefined);
+  const [columns, setColumns] = useState([]);
   const navigate = useNavigate();
-  const columns = [
-    {
-      title: "کد",
-      property: "id",
-      render: (row) => {
-        return (
-          <td>
-            <span className="ms-2">{row["id"]}</span>
-            {row["personnelImage"] != null && row["personnelImage"] != "" ? (
-              <>
-                <img
-                  src={`data:image/jpeg;base64,${row["personnelImage"]}`}
-                  className="img-personnel-table"
-                />
-              </>
-            ) : (
-              <>
-                <img
-                  src="../assets/img/avatars/1.png"
-                  className="img-personnel-table"
-                />
-              </>
-            )}
-          </td>
-        );
-      },
-    },
-    {
-      title: "کد پرسنلی",
-      property: "personnelNumber",
-    },
-    {
-      title: "نام کامل",
-      property: "fullName",
-    },
-    {
-      title: "فعال",
-      property: "isActive",
-      render: (row) => {
-        let isActive = row["isActive"];
-        return (
-          <td>
-            {isActive ? (
-              <>
-                <span class="badge bg-success">فعال</span>
-              </>
-            ) : (
-              <>
-                <span class="badge bg-warning">غیرفعال</span>
-              </>
-            )}
-          </td>
-        );
-      },
-    },
-    {
-      title: "استثنا",
-      property: "isSpecial",
-      render: (row) => {
-        let isSpecial = row["isSpecial"];
-        return (
-          <td>
-            {isSpecial ? (
-              <>
-                <span class="badge bg-success">استثنا</span>
-              </>
-            ) : (
-              <>
-                <span class="badge bg-warning">غیراستثنا</span>
-              </>
-            )}
-          </td>
-        );
-      },
-    },
-    //
-    {
-      title: "تعداد روز باقی مانده",
-      property: "countOfDayToEndWorkDate",
-      render: (row) => {
-        let day = row["countOfDayToEndWorkDate"];
-        const Show = () => {
-          if (day < 10) return <span class="badge bg-danger">{day}</span>;
-          if (day < 30) return <span class="badge bg-warning">{day}</span>;
-          if (day < 90) return <span class="badge bg-success">{day}</span>;
-          else return <span class="badge bg-primary">{day}</span>;
-        };
-        return <td>{Show()}</td>;
-      },
-    },
-    {
-      title: "تاریخ شروع به کار",
-      property: "dateTimeOfStartWork",
-      render: (row) => {
-        return (
-          <td>
-            <ShowDateFromUnix unix={row["dateTimeOfStartWork"]} />
-          </td>
-        );
-      },
-    },
-    {
-      title: "تاریخ پایان کار",
-      property: "dateTimeOfEndWork",
-      render: (row) => {
-        return (
-          <td>
-            <ShowDateFromUnix unix={row["dateTimeOfEndWork"]} />
-          </td>
-        );
-      },
-    },
-    {
-      title: "",
-      property: "",
-      render: (row) => {
-        return (
-          <td>
-            <button
-              className="btn btn-sm btn-warning"
-              onClick={(e) =>
-                navigate(`/personnel/edit/${row["personnelNumber"]}`)
-              }
-            >
-              EDIT
-            </button>
-            <ModalShowBtn
-              content="DELT"
-              modalId="modalDelete"
-              className="btn-sm btn-danger me-2"
-              onHandleClick={(e) => {
-                setPersonnelIdForDelete(row["id"]);
-              }}
-            />
-          </td>
-        );
-      },
-    },
-  ];
   const ConfirmDelete = async () => {
     if (personnelIdForDelete === undefined || personnelIdForDelete === null) {
       toast.warn("لطفا یک شخص را برای حذف انتخاب کنید . ");
@@ -185,6 +56,163 @@ function PersonnelTableCom({isShowSearchSection=true}) {
     }
   };
   useEffect(() => {
+    if (isShowFullDara) {
+      setColumns([
+        {
+          title: "",
+          property: "id",
+          render: (row) => {
+            return (
+              <td>
+                {/* <span className="ms-2">{row["id"]}</span> */}
+                {row["personnelImage"] != null &&
+                row["personnelImage"] != "" ? (
+                  <>
+                    <img
+                      src={`data:image/jpeg;base64,${row["personnelImage"]}`}
+                      className="img-personnel-table"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <img
+                      src="../assets/img/avatars/1.png"
+                      className="img-personnel-table"
+                    />
+                  </>
+                )}
+              </td>
+            );
+          },
+        },
+        {
+          title: "کد پرسنلی",
+          property: "personnelNumber",
+          fieldForCheckSelected: true,
+        },
+        {
+          title: "نام کامل",
+          property: "fullName",
+        },
+        {
+          title: "فعال",
+          property: "isActive",
+          render: (row) => {
+            let isActive = row["isActive"];
+            return (
+              <td>
+                {isActive ? (
+                  <>
+                    <span class="badge bg-success">فعال</span>
+                  </>
+                ) : (
+                  <>
+                    <span class="badge bg-warning">غیرفعال</span>
+                  </>
+                )}
+              </td>
+            );
+          },
+        },
+        {
+          title: "استثنا",
+          property: "isSpecial",
+          render: (row) => {
+            let isSpecial = row["isSpecial"];
+            return (
+              <td>
+                {isSpecial ? (
+                  <>
+                    <span class="badge bg-success">استثنا</span>
+                  </>
+                ) : (
+                  <>
+                    <span class="badge bg-warning">غیراستثنا</span>
+                  </>
+                )}
+              </td>
+            );
+          },
+        },
+        //
+        {
+          title: "تعداد روز باقی مانده",
+          property: "countOfDayToEndWorkDate",
+          render: (row) => {
+            let day = row["countOfDayToEndWorkDate"];
+            const Show = () => {
+              if (day < 10) return <span class="badge bg-danger">{day}</span>;
+              if (day < 30) return <span class="badge bg-warning">{day}</span>;
+              if (day < 90) return <span class="badge bg-success">{day}</span>;
+              else return <span class="badge bg-primary">{day}</span>;
+            };
+            return <td>{Show()}</td>;
+          },
+        },
+        {
+          title: "تاریخ شروع به کار",
+          property: "dateTimeOfStartWork",
+          render: (row) => {
+            return (
+              <td>
+                <ShowDateFromUnix unix={row["dateTimeOfStartWork"]} />
+              </td>
+            );
+          },
+        },
+        {
+          title: "تاریخ پایان کار",
+          property: "dateTimeOfEndWork",
+          render: (row) => {
+            return (
+              <td>
+                <ShowDateFromUnix unix={row["dateTimeOfEndWork"]} />
+              </td>
+            );
+          },
+        },
+        {
+          title: "",
+          property: "",
+          render: (row) => {
+            return (
+              <td>
+                <button
+                  className="btn btn-sm btn-warning"
+                  onClick={(e) =>
+                    navigate(`/personnel/edit/${row["personnelNumber"]}`)
+                  }
+                >
+                  EDIT
+                </button>
+                <ModalShowBtn
+                  content="DELT"
+                  modalId="modalDelete"
+                  className="btn-sm btn-danger me-2"
+                  onHandleClick={(e) => {
+                    setPersonnelIdForDelete(row["id"]);
+                  }}
+                />
+              </td>
+            );
+          },
+        },
+      ]);
+    } else {
+      setColumns([
+        {
+          title: "کد پرسنلی",
+          property: "personnelNumber",
+          fieldForCheckSelected: true,
+        },
+        {
+          title: "نام کامل",
+          property: "fullName",
+        },
+      ]);
+    }
+  }, [isShowFullDara]);
+  useEffect(() => {
     if (AuthService.IsAuthenticated()) {
       LoadData();
     }
@@ -196,7 +224,7 @@ function PersonnelTableCom({isShowSearchSection=true}) {
         text="آیا از حذف این شخص اطمینان دارید ؟ "
         onHandleClickConfirm={ConfirmDelete}
       />
-      <Card title="مدیریت کاربران">
+      <Card title={Header}>
         {isShowSearchSection && (
           <>
             <PersonnelSearchTableCom
@@ -207,7 +235,16 @@ function PersonnelTableCom({isShowSearchSection=true}) {
             <Divider />
           </>
         )}
-        <Table columns={columns} rows={personnels} type={"primary-2"} className="personnelTableFullSize" />
+        <Table
+          isCheckable={isCheckable}
+          columns={columns}
+          rows={personnels}
+          type={"primary-2"}
+          className={classNameTable}
+          isCheckAll={isCheckAll}
+          idsChecked={personnelNumbersSelected}
+          onHandleCheckedOne={onHandleCheckedOne}
+        />
       </Card>
     </>
   );

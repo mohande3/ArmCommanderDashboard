@@ -1,5 +1,13 @@
 const baseAddress = process.env.REACT_APP_API_ADDRESS;
 const AddressApiService = {
+  CommandAddress: {
+    GetTable: baseAddress + "v1/CommandApi/CommandLogGetTable",
+    CreateCommandSetTimeWithServerTime:
+      baseAddress + "v1/CommandApi/CreateCommandSetTimeWithServerTime",
+    CreateCommandUpdatePersonnel:
+      baseAddress + "v1/CommandApi/CreateCommandUpdatePersonnel",
+    //
+  },
   TimeLog: {
     GetTable: baseAddress + "Kara2000api/v1/TimeLogApi/GetTable",
     HubTimeLogAddress: baseAddress + "hubtimelogservice",

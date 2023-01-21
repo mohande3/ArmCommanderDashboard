@@ -11,6 +11,7 @@ const TrackingTripApiService = {
         dateTimeOfStart: trip.dateTimeOfStart.toString(),
         code: trip.code,
         serviceCode: trip.serviceCode,
+        deviceSerialNumber:trip.deviceSerialNumber
       };
       let resultFromServer = await axios.post(
         AddressApiService.Tracking.TrackingTripAddOrUpdate,

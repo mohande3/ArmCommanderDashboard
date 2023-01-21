@@ -51,11 +51,9 @@ function DeviceListGroupCom({
     //  setDevices([...data]);
   };
   useEffect(() => {
-    console.log("INITIALIOZE EFFECCT", deviceCheckeds);
     LoadData();
   }, []);
   useEffect(() => {
-    console.log("CHANGE DEVICE SELECTED", deviceCheckeds);
     ChangeDataSelected();
   }, [deviceCheckeds]);
   return (

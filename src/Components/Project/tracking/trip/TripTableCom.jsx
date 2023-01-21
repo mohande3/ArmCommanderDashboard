@@ -22,6 +22,7 @@ function TripTableCom() {
     dateTimeOfStart: "",
     code: "",
     serviceCode: "",
+    deviceSerialNumber: "",
   });
   const columns = [
     {
@@ -42,9 +43,29 @@ function TripTableCom() {
               <span className="badge bg-label-info">{row["serviceName"]}</span>
             </td>
           );
+         return (
+           <td>
+             <span className="badge bg-label-warning">{"بدون سرویس"}</span>
+           </td>
+         );
+      },
+    },
+    {
+      title: "دستگاه",
+      property: "deviceSerialNumber",
+      render: (row) => {
+        if (row["deviceSerialNumber"] !== null) {
+          return (
+            <td>
+              <span className="badge bg-label-info">
+                {row["deviceSerialNumber"]}
+              </span>
+            </td>
+          );
+        }
         return (
           <td>
-            <span className="badge badge-label-danger">بدون سرویس</span>
+            <span className="badge bg-label-danger">بدون دستگها</span>
           </td>
         );
       },
@@ -57,22 +78,15 @@ function TripTableCom() {
           <td>
             <ModalShowBtn
               className="btn-sm btn-warning"
-              modalId="ModalAddEdittrip"
+              modalId="ModalAddEditTrip"
               content="EDI"
               onHandleClick={(e) => {
                 settrip({
-                  serialNumber: row["serialNumber"],
-                  ipAddress: row["ipAddress"],
-                  portNumber: row["portNumber"],
                   name: row["name"],
-                  description: row["description"],
-                  version: row["version"],
-                  location: row["location"],
-                  macAddress: row["macAddress"],
-                  dateTimeOfCurrent: row["dateTimeOfCurrent"],
-                  typeOftrip: row["typeOftrip"],
-                  gateId: row["gateId"],
-                  carId: row["carId"],
+                  dateTimeOfStart: row["dateTimeOfStartTrip"],
+                  code: row["code"],
+                  serviceCode: row["serviceCode"],
+                  deviceSerialNumber: row["deviceSerialNumber"],
                 });
               }}
             />

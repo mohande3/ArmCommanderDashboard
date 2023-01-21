@@ -15,7 +15,7 @@ const Divider = ({
         (textLocation !== "" ? "text-" + type : "")
       }
     >
-      <div class="divider-text">{text}</div>
+      <div class={`divider-text ${type ? "text-" + type : ""}`}>{text}</div>
     </div>
   );
 };

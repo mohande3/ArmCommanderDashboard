@@ -8,11 +8,28 @@ function Table({
   columns = [],
   rows = [],
   className = "",
+  isCheckable = false,
+  isCheckAll = false,
+  idsChecked = [],
+  onHandleCheckedAll,
+  onHandleCheckedOne,
 }) {
   return (
     <table className={"table table-responsive " + className}>
-      <TableHeader columns={columns} type={type} />
-      <TableBody columns={columns} rows={rows} />
+      <TableHeader
+        columns={columns}
+        type={type}
+        isCheckable={isCheckable}
+        isCheckAll={isCheckAll}
+      />
+      <TableBody
+        columns={columns}
+        rows={rows}
+        isCheckable={isCheckable}
+        isCheckAll={isCheckAll}
+        idsChecked={idsChecked}
+        onHandleCheckedOne={onHandleCheckedOne}
+      />
     </table>
   );
 }

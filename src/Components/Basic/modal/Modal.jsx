@@ -6,7 +6,7 @@ function Modal({
   children,
   modalFooter,
   onHandleClickConfirm,
-  size=''
+  size = "",
 }) {
   const HandleClickConfirm = () => {
     if (!onHandleClickConfirm) {
@@ -48,7 +48,7 @@ function Modal({
         role="dialog"
         data-bs-backdrop="static"
       >
-        <div className={`modal-dialog ${size?"modal-"+size:""}`}>
+        <div className={`modal-dialog ${size ? "modal-" + size : ""}`}>
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel1">

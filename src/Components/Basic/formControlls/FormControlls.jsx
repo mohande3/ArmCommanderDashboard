@@ -207,6 +207,38 @@ const InputCheckBox = ({
     </div>
   );
 };
+const InputRadioBox = ({
+  className = "",
+  text = "",
+  id = "",
+  group = "",
+  onHandleChangeValue,
+  value
+}) => {
+  const HandleChangeValue = (data) => {
+    if (onHandleChangeValue === null || onHandleChangeValue === undefined) {
+      console.warn(`Not exist onHandleChangeValue for ${id} controll`);
+      return;
+    }
+    onHandleChangeValue(data === true ? "1" : "0");
+  };
+  return (
+    <div className={"form-check" + className}>
+      <input
+        class="form-check-input"
+        type="radio"
+        name={group}
+        id={id}
+        // value="option2"
+        checked={value}
+        onChange={HandleChangeValue}
+      />
+      <label className="form-check-label" htmlFor={id}>
+        {text}
+      </label>
+    </div>
+  );
+};
 // ====================== SHOW
 const ShowDateFromUnix = ({ unix }) => {
   if (!unix) {
@@ -243,6 +275,7 @@ export {
   InputListCheckGroup,
   InputSwitch,
   InputCheckBox,
+  InputRadioBox,
   ShowDateFromUnix,
   ShowTimeFromUnix,
 };

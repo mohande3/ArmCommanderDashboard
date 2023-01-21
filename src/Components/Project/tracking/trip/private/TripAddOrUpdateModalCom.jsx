@@ -64,6 +64,19 @@ function TripAddOrUpdateModalCom({
         </Col>
       </Row>
       <Row className="mt-3">
+        <Col col="6">
+          <Label htmlFor="deviceSerialNumber" text="سریال دستگاه : " />
+          <InputText
+            id="deviceSerialNumber"
+            placeHolder="سریال دستگاه"
+            value={trip.deviceSerialNumber}
+            onHandleChangeValue={(val) =>
+              onHandleSetValue("deviceSerialNumber", val)
+            }
+          />
+        </Col>
+      </Row>
+      <Row className="mt-3">
         <Col col="12">
           <Label htmlFor="description" text="توضیحات : " />
           <InputText

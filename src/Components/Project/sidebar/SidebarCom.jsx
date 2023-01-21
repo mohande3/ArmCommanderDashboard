@@ -44,6 +44,24 @@ function SidebarCom() {
           <li className="menu-item">
             <a href="#" className="menu-link menu-toggle">
               <i className="menu-icon tf-icons bx bx-box"></i>
+              <div data-i18n="User interface">مدیریت دستورات</div>
+            </a>
+            <ul className="menu-sub">
+              <li className="menu-item">
+                <Link to="/command/immediately" className="menu-link">
+                  <div data-i18n="Without menu">دستورات</div>
+                </Link>
+              </li>
+              <li className="menu-item">
+                <Link to="/command/schedule" className="menu-link">
+                  <div data-i18n="Without menu">دستورات زمان بندی شده</div>
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li className="menu-item">
+            <a href="#" className="menu-link menu-toggle">
+              <i className="menu-icon tf-icons bx bx-box"></i>
               <div data-i18n="User interface">مدیریت کاربران</div>
             </a>
             <ul className="menu-sub">

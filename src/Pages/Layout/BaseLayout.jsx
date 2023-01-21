@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import SidebarCom from "../../Components/Project/sidebar/SidebarCom";
 import NavbarCom from "../../Components/Project/navbar/NavbarCom";
 import { Outlet } from "react-router-dom";
-import { Container } from "../../Components/Basic/containers/Containers";
+import { Container, ContainerFluid } from "../../Components/Basic/containers/Containers";
 import IsAuthenticatedCom from "../../Components/Project/auth/IsAuthenticatedCom";
 
 function BaseLayout() {
@@ -29,9 +29,9 @@ function BaseLayout() {
           <SidebarCom />
           <div className="layout-page">
             <NavbarCom />
-            <Container className="mt-4">
+            <ContainerFluid className="mt-4">
               <Outlet />
-            </Container>
+            </ContainerFluid>
           </div>
         </div>
 
